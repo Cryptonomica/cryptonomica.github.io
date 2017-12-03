@@ -1,0 +1,179 @@
+/* useful links:
+
+https://color.adobe.com
+*/
+
+footer {
+    background-color: #dddddd;
+}
+
+/* http://stackoverflow.com/a/36426886/1697878 */
+/* Then, simply wrap the expression (for ex) in your html:
+<span class="capitalize">{{ uppercase_expression }}</span>
+No js needed */
+.capitalize {
+    text-transform: capitalize;
+}
+
+.textareaWithKey {
+    font-family: monospace;
+    font-size: 75%;
+}
+
+.logo-background {
+    /*background-image: url("images/logo.004.crop.gray.svg");*/
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.whitelink {
+    color: white !important;
+}
+
+/* Links */
+
+a,
+a:visited,
+a:focus,
+a:hover {
+    color: #770077;
+}
+
+a:hover {
+    /* glow effect on hover */
+    color: white;
+    /*font-weight: bold;*/
+    background-color: #550055;
+    /*text-shadow: -1px 1px 20px #ffffff, 1px -1px 20px #ae4dff;*/
+}
+
+/*----- Icons ------------- */
+
+.fa-key {
+    /*color: orangered;*/
+    /*color: orange;*/
+    font-size: 1.3em;
+}
+
+.false {
+    border-color: red;
+    border-style: solid;
+    border-width: medium;
+}
+
+.true {
+    border-color: green;
+    border-style: solid;
+    border-width: medium;
+}
+
+.keyverified {
+    color: green;
+    text-align: center;
+    border-top: solid;
+    border-top-color: green;
+    border-bottom-color: green !important;
+    border-bottom: solid !important;
+    padding: 2px !important;
+    margin-bottom: 0.5em !important;
+
+}
+
+.keynotverified {
+    color: red;
+    text-align: center;
+    border-top: solid;
+    border-top-color: red;
+    border-bottom-color: red !important;
+    border-bottom: solid !important;
+    padding: 2px !important;
+    margin-bottom: 0.5em !important;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.text-align-left {
+    text-align: left;
+}
+
+.text-align-right {
+    text-align: right;
+}
+
+.text-bold {
+    font-weight: bolder;
+}
+
+.onHoverRed:hover {
+    color: red;
+}
+
+.onHoverPurple:hover {
+    color: purple;
+}
+
+.teamMemberCard {
+    width: 199px;
+    margin: 0.5em;
+}
+
+img.teamMemberPhoto {
+    height: 199px;
+}
+
+img.teamMemberPhoto:hover {
+    /* */
+}
+
+.useCaseCard {
+    width: 500px;
+    margin: 0.5em;
+}
+
+img.useCasePhoto {
+    height: 300px;
+}
+
+/* for video recording: */
+
+@keyframes blink {
+    50% {
+        border-color: rgba(255, 0, 0, 0.77);
+        background-color: rgba(255, 0, 0, 0.77);
+        color: rgba(255, 255, 255, 1);
+    }
+}
+
+.recording {
+    animation: blink .5s step-end infinite alternate;
+}
+
+.paused {
+    background-color: yellow;
+    color: black !important;
+}
+
+.video-status {
+    color: rgba(255, 255, 255, 0) !important;
+}
+
+/* ---------------------*/
+
+.verificationDoc {
+    height: 350px;
+}
+
+.my-file-input-element {
+    color: black;
+    /*border-color: black;*/
+    /*border-style: dotted;*/
+    /*border-width: thin;*/
+    /*padding: 0.5em;*/
+}
+
+a.imageLink {
+
+}
+
