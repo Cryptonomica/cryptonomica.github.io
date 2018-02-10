@@ -110,6 +110,11 @@ router
                     controller: 'cryptonomica.controller.ethereumVerification',
                     templateUrl: 'app/ethereum/ethereumVerification.html'
                 })
+                .state('openPGPOnline', {
+                    url: '/openPGPOnline',
+                    controller: 'cryptonomica.controller.openPGPOnline',
+                    templateUrl: 'app/openPGPOnline/openPGPOnline.html'
+                })
                 // .state('onlineVerificationVideo', {
                 //     url: '/onlineVerificationVideo/{fingerprint}',
                 //     controller: 'cryptonomica.controller.onlineVerification',

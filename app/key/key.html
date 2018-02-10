@@ -3,9 +3,8 @@
 <div class="container">
     <div class="card card-block">
         <!-- Alert! -->
-        <div ng-show="alert" class="alert alert-danger" role="alert">
-            {{alert}}
-        </div>
+        <alerts></alerts>
+
         <!-- KEY VERIFICATION START -->
         <!-- TODO: to directive -->
         <!-- TODO: show key verification info in the key view-->
@@ -53,12 +52,12 @@
 
                         <!--// verificationInfo-->
                         <label for="verificationInfo">Place where verification was made:</label>
-                    <textarea id="verificationInfo"
-                              name="verificationInfo"
-                              class="form-control"
-                              ng-model="VerifyPGPPublicKeyForm.verificationInfo"
-                              placeholder="for example: International House, 24 Holborn Viaduct, London, United Kingdom"
-                              ng-required="true">
+                        <textarea id="verificationInfo"
+                                  name="verificationInfo"
+                                  class="form-control"
+                                  ng-model="VerifyPGPPublicKeyForm.verificationInfo"
+                                  placeholder="for example: International House, 24 Holborn Viaduct, London, United Kingdom"
+                                  ng-required="true">
                     </textarea>
                         <br>
                     </fieldset>
@@ -201,6 +200,14 @@
                             <pre><code id="ASCIIarmored" title="Public PGP Key">{{key.asciiArmored}}</code></pre>
                         </div>
                     </div>
+                </td>
+            </tr>
+            <tr ng-show="currentUser.userId === key.cryptonomicaUserId">
+                <td></td>
+                <td>
+                    <button ng-click="verifyEthereumAccount()">
+                        Add Ethereum Account Verification
+                    </button>
                 </td>
             </tr>
 

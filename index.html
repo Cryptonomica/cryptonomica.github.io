@@ -41,7 +41,8 @@
     <!-- angular-google-gapi -->
     <!-- https://github.com/maximepvrt/angular-google-gapi -->
     <!--<script src="vendors/angular-google-gapi/0.1.2/angular-google-gapi.js"></script>-->
-    <script src="vendors/angular-google-gapi/1.0.0-beta.1/angular-google-gapi.min.js"></script>
+    <!--<script src="vendors/angular-google-gapi/1.0.0-beta.1/angular-google-gapi.min.js"></script>-->
+    <script src="vendors/angular-google-gapi/1.0.1/dist/angular-google-gapi.min.js"></script>
     <!-- ngProgress 1.1.2-->
     <!-- https://github.com/VictorBjelkholm/ngProgress -->
     <script src="vendors/ngprogress/ngprogress.min.js"></script>
@@ -75,7 +76,8 @@
     <script src="vendors/angular-country-picker/country-picker.min.js"></script>
 
     <!-- web3.js -->
-    <script src="vendors/web3/dist/web3.min.js"></script>
+    <!--<script src="vendors/web3/dist/web3.min.js"></script>-->
+    <script src="vendors/web3/0.19.0/dist/web3.min.js"></script>
 
     <!-- truffle -->
     <!-- https://github.com/trufflesuite/truffle-contract (requires web3.js) -->
@@ -103,6 +105,8 @@
     <script src="app/onlineVerification/onlineVerification.js"></script>
     <script src="app/onlineVerification/onlineVerificationView.js"></script>
     <script src="app/ethereum/controller.ethereumVerification.js"></script>
+    <script src="app/openPGPOnline/controller.openPGPOnline.js"></script>
+    <!--<script src="app/openPGPOnline/openPGPOnline.js"></script>-->
     <!--        Title          -->
     <title>Cryptonomica: identity proof, online dispute resolution, internationally enforceable electronic
         contracts
@@ -143,16 +147,21 @@ see:
 https://github.com/trufflesuite/truffle/issues/260
 https://gist.github.com/mpolci/52db63980897bcd19d77778045b20743
 -->
-<script>
+<!-- possible error:
+Uncaught Error: [ng:btstrpd]
+(App Already Bootstrapped)
+- check if we really need bootstrapping
+-->
+<!--<script>-->
 
-    window.addEventListener(
-        'load',
-        function () {
-            angular.bootstrap(document, ['cryptonomica'])
-        }
-    )
+    <!--window.addEventListener(-->
+        <!--'load',-->
+        <!--function () {-->
+            <!--angular.bootstrap(document, ['cryptonomica'])-->
+        <!--}-->
+    <!--)-->
 
-</script>
+<!--</script>-->
 
 <div>
     <ui-view></ui-view>

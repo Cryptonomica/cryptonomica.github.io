@@ -1,8 +1,10 @@
 'use strict';
 
 /**
+ * !!! depreciated
+ *
  *  get and showes key by key websafestring
- *  TODO: if user is a notary or crytonomimica user - offer to add verification
+ *
  */
 
 var controller_name = "cryptonomica.controller.showkey";

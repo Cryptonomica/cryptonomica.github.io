@@ -1,95 +1,162 @@
-<div class="container">
+<!--
+use this id to access $scope in browser console:
+angular.element(document.getElementById('ethVerificationCtrl')).scope();
+for example: $scope = angular.element(document.getElementById('ethVerificationCtrl')).scope();
+-->
 
-    <h3>this is for verification of ethereum account using cryptonomica verified OpenPGP key</h3>
+<div id="ethVerificationCtrl">
 
-    <section id="requestStringToSign">
-        <div class="card card-block">
-            <h5>request string </h5>
-            <div>
-                first you request a string to to sign this string is made especially for your OpenPGP key, your Ethereum
-                account,
-                and depends on block in the blockchain in which this string is created
+    <header-main-menu></header-main-menu>
+    <navigation-menu></navigation-menu>
+    <alerts></alerts>
+
+    <!-- this button can be used to trigger $rootScope.login() if pop-ups are blocken in browser -->
+    <div ng-hide="currentUser" style="background-color: rgb(222,222,222)">
+        <center>
+            <div style="position: absolute; top: 50%; left: 40%; text-align: center;">
+                <b>this page requires login</b>
+                <button class="nav-link page-scroll loginBtn loginBtn--google"
+                        href=""
+                        ng-click="login()"
+                        title="Login using google account">
+                    &nbsp;<i class="fa fa-sign-in"></i>&nbsp;Login with Google&nbsp;&nbsp;
+                </button>
             </div>
-            <button class="btn" ng-click="requestStringToSign()">
-                request string
-            </button>
-            <div id="stringToSignDiv">
-                <pre><code id="stringToSign" title="String to sign">{{stringToSign}}</code></pre>
-            </div>
-            <button ng-show="stringToSign"
-                    class="btn"
-                    role="button"
-                    type="button"
-                    ngclipboard
-                    data-clipboard-target="#stringToSign">
-                Copy to clipboard
-            </button>
+
+        </center>
+    </div>
+
+
+    <div class="container" ng-show="currentUser">
+        <br>
+        <h3>this is for verification of ethereum account using cryptonomica verified OpenPGP key</h3>
+
+        <div>
+            Key ID:
+            <a href="" ui-sref="key({fingerprint:fingerprint})" title="Show key info">
+                {{keyId}}
+            </a> ({{pgpPublicKey.userID}})<br>
+            <span ng-show="pgpPublicKey.cryptonomicaUserId === currentUser.userId">(this is your key)</span>
+            <span ng-hide="pgpPublicKey.cryptonomicaUserId === currentUser.userId">(it's not your key)</span>
         </div>
-    </section>
 
-    <section id="sendSignedString">
-        <div class="card card-block">
-            <h5>Send signed string</h5>
-            <div>
-                you have to sign string you got on previous step with your key, put signed text in this field, and than
-                click 'send signed string'
+
+        <section id="requestStringToSign" ng-show="pgpPublicKey.cryptonomicaUserId === currentUser.userId">
+            <div class="card card-block">
+                <h5>request string </h5>
+                <div>
+                    First you request a string to to sign. This string is made especially for your OpenPGP key, your
+                    Ethereum
+                    account, and depends on block in the blockchain in which this string is created
+                </div>
+                <button class="btn" ng-click="requestStringToSignWithKey()">
+                    <span ng-show="requestStringToSignWithKeyWorking" title="loading...">
+                        <i class="fa fa-refresh fa-spin fa-fw"></i>
+                    </span>
+                    request string
+                </button>
+
+                <div ng-show="requestStringToSignWithKeyTx">
+                    See transaction:
+                    <b>
+                        <a href="" target="_blank"
+                           ng-href="{{etherscanLinkPrefix}}tx/{{requestStringToSignWithKeyTx.tx}}">
+                            {{requestStringToSignWithKeyTx.tx}}
+                        </a>
+                    </b><br>
+                </div>
+
+                <div id="stringToSignDiv" ng-show="stringToSign">
+                    <div>String to sign:</div>
+                    <br>
+                    <pre><code id="stringToSign" title="String to sign">{{stringToSign}}</code></pre>
+                </div>
+
+                <button ng-show="stringToSign"
+                        class="btn"
+                        role="button"
+                        type="button"
+                        ngclipboard
+                        data-clipboard-target="#stringToSign">
+                    Copy string to sign to clipboard
+                </button>
             </div>
-            <form>
-                <textarea class="form-control">
-                    {{signedString}}
-                </textarea>
-            </form>
-            <button
-                    class="btn"
-                    role="button"
-                    type="button"
-                    ng-click="sendsignedString()">
-                Send Signed String to Smart Contract
-            </button>
+        </section>
 
-        </div>
-    </section>
+        <section id="sendSignedString">
+            <div class="card card-block">
+                <h5>Send signed string</h5>
+                <div>
+                    you have to sign string you got on previous step with your key, put signed text in this field, and
+                    than
+                    click 'send signed string'
+                </div>
+                <form>
+                    <textarea class="form-control" ng-model="signedString"></textarea>
+                </form>
+                <button
+                        class="btn"
+                        role="button"
+                        type="button"
+                        ng-click="uploadSignedString()">
+                    Send Signed String to Smart Contract
+                </button>
 
-    <section id="verify">
-        <div class="card card-block">
-            <h5>Request Data From Smart Contract</h5>
-            <div>
-                Now request data from smart contract, check data and click 'Verify'
             </div>
-            <button
-                    class="btn"
-                    role="button"
-                    type="button"
-                    ng-click="requestDataFromSmartContract()">
-                Request Data From Smart Contract
-            </button>
-            <div id="dataFromSmartContract">
-                <br>
+        </section>
+
+        <section id="verify">
+            <div class="card card-block">
+                <h5>Request Data From Smart Contract</h5>
+                <div>
+                    Now request data from smart contract, check data and click 'Verify'
+                </div>
+                <button
+                        class="btn"
+                        role="button"
+                        type="button"
+                        ng-click="requestDataFromSmartContract()">
+                    Request Data From Smart Contract
+                </button>
+                <div id="dataFromSmartContract">
+                    <br>
+                </div>
+                <button class="btn" ng-click="verify()">
+                    Verify
+                </button>
             </div>
-            <button class="btn" ng-click="verify()">
-                Verify
-            </button>
-        </div>
-    </section>
+        </section>
 
-    <section id="verificationResult">
-        <div class="card card-block">
-            <h5>Verification Result</h5>
-            <div>
-                This is your verification result
+        <section id="verificationResult">
+            <div class="card card-block">
+                <h5>Verification Result</h5>
+                <div>
+                    This is your verification result
+                </div>
+                <div id="verificationResultData">
+                    <!-- -->
+                </div>
             </div>
-            <div id="verificationResultData">
-                <!-- -->
-            </div>
-        </div>
-    </section>
+        </section>
 
 
-    <hr>
-    <hr>
-    <h5>OpenPGP key data:</h5>
-    {{pgpPublicKey}}
+        <hr>
+        Information: <br>
+        Working with smart contract:<b><a
+            ng-href="{{etherscanLinkPrefix}}address/{{contract.address}}">{{contract.address}}</a></b>
+        <br>
+        Your Ethereum Account: <b><a ng-href="{{etherscanLinkPrefix}}address/{{ethAccount}}">{{ethAccount}}</a></b><br>
+        Your Ethereum network: <b>{{currentNetwork.networkName}} (network id: {{currentNetwork.network_id}})</b><br>
+        Your Ethereum node: <b>{{currentNetwork.node}}</b><br>
+        <!--{"network_id":"4","networkName":"Rinkeby Test Network","node":"MetaMask/v3.14.1","ethereumProtocolVersion":"0x3f","connected":true}-->
+        <hr>
+        <h5>OpenPGP key data:</h5>
+        {{pgpPublicKey}}
 
-    <h5>your user data:</h5>
-    {{currentUser}}
+        <h5>your user data:</h5>
+        {{currentUser}}
+    </div>
+
+    <footer-main></footer-main>
+
 </div>
