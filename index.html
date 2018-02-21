@@ -41,8 +41,10 @@
     <!-- angular-google-gapi -->
     <!-- https://github.com/maximepvrt/angular-google-gapi -->
     <!--<script src="vendors/angular-google-gapi/0.1.2/angular-google-gapi.js"></script>-->
-    <!--<script src="vendors/angular-google-gapi/1.0.0-beta.1/angular-google-gapi.min.js"></script>-->
-    <script src="vendors/angular-google-gapi/1.0.1/dist/angular-google-gapi.min.js"></script>
+    <script src="vendors/angular-google-gapi/1.0.0-beta.1/angular-google-gapi.min.js"></script>
+    <!-- angular-google-gapi/1.0.1 is much slower than 1.0.0-beta.1 -->
+    <!--<script src="vendors/angular-google-gapi/1.0.1/dist/angular-google-gapi.min.js"></script>-->
+
     <!-- ngProgress 1.1.2-->
     <!-- https://github.com/VictorBjelkholm/ngProgress -->
     <script src="vendors/ngprogress/ngprogress.min.js"></script>
@@ -83,6 +85,10 @@
     <!-- https://github.com/trufflesuite/truffle-contract (requires web3.js) -->
     <script src="vendors/truffle-contract/dist/truffle-contract.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/openpgp/2.6.0/openpgp.min.js"
+            integrity="sha256-DIFHONFgXJ2Z/EIiFAzymz4x2z4Ge0K2mlxaxv7zitg="
+            crossorigin="anonymous"></script>
+
     <!--  MY SCRIPTS -->
     <script src="app/app.js"></script>
     <script src="app/router.js"></script>
@@ -93,7 +99,7 @@
     <script src="app/dashboard/dashboard.controller.js"></script>
     <script src="app/search/controller.search.js"></script>
     <script src="app/viewprofile/controller.viewprofile.js"></script>
-    <script src="app/showkey/showkey.controller.js"></script>
+    <!--<script src="app/showkey/showkey.controller.js"></script>-->
     <script src="app/key/key.controller.js"></script>
     <script src="app/verification/verification.controller.js"></script>
     <script src="app/verification/verification.service.js"></script>
@@ -154,12 +160,12 @@ Uncaught Error: [ng:btstrpd]
 -->
 <!--<script>-->
 
-    <!--window.addEventListener(-->
-        <!--'load',-->
-        <!--function () {-->
-            <!--angular.bootstrap(document, ['cryptonomica'])-->
-        <!--}-->
-    <!--)-->
+<!--window.addEventListener(-->
+<!--'load',-->
+<!--function () {-->
+<!--angular.bootstrap(document, ['cryptonomica'])-->
+<!--}-->
+<!--)-->
 
 <!--</script>-->
 

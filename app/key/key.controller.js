@@ -67,6 +67,10 @@ controller.controller(controller_name, [
                 $state.go('ethereumVerification', {'fingerprint': $stateParams.fingerprint});
             };
 
+            $scope.goToEthereumAccountVerification = function () {
+                $state.go('ethereumVerification', {'fingerprint': $stateParams.fingerprint});
+            };
+
             //
             GAuth.checkAuth().then(
                 function (user) {

@@ -10,8 +10,10 @@ for example: $scope = angular.element(document.getElementById('ethVerificationCt
     <alerts></alerts>
 
     <!-- ---- OpenPGP JS --- -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/openpgp/2.6.0/openpgp.min.js"
-            integrity="sha256-DIFHONFgXJ2Z/EIiFAzymz4x2z4Ge0K2mlxaxv7zitg=" crossorigin="anonymous"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/openpgp/2.6.0/openpgp.min.js"-->
+            <!--integrity="sha256-DIFHONFgXJ2Z/EIiFAzymz4x2z4Ge0K2mlxaxv7zitg=" crossorigin="anonymous"></script>-->
+    <!-- openPGP.js link moved to index.html -->
+
     <!-- File saver -->
     <!-- https://github.com/eligrey/FileSaver.js -->
     <!-- https://eligrey.com/blog/saving-generated-files-on-the-client-side/ -->
@@ -199,6 +201,11 @@ for example: $scope = angular.element(document.getElementById('ethVerificationCt
         <button id="copyDecryptedTextToClipboard">Copy to clipboard</button>
         <div class="line"></div>
         <br>
+        <hr>
+        All operations with keys on this page are made only in the browser without transferring data to the server. You can view the page code on
+        <a href="app/openPGPOnline/openPGPOnline.js">app/openPGPOnline/openPGPOnline.js</a>
+        You can also use <a href="https://ageyev.github.io/crypto/openpgp/">ageyev.github.io/crypto/openpgp/</a> with the same functionality.
+        <hr>
 
     </div>
 

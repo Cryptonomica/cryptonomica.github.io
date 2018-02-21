@@ -10,11 +10,12 @@
         <!-- TODO: show key verification info in the key view-->
         <hr>
         <div ng-show="(currentUser && currentUser.cryptonomicaOfficer)||(currentUser && currentUser.notary)">
+            <hr>
             <h4>Notary menu: </h4>
             <p>(you view this because you are an authorized notary or Cryptonomica officer)</p>
             <button type="button" class="btn btn-default" ng-click="KeyVerificationFormShowToggle()"
                     title="Click to show">
-                Add key verification:
+                Add key verification
             </button>
             <div ng-show="KeyVerificationFormShow">
                 <form id="KeyVerificationFORM" name="KeyVerificationFORM">
@@ -83,6 +84,7 @@
                     {{verifyKeyError.message}}
                 </div>
             </div>
+            <hr>
             <hr>
             <!--  -->
         </div>
@@ -202,12 +204,17 @@
                     </div>
                 </td>
             </tr>
-            <tr ng-show="currentUser.userId === key.cryptonomicaUserId">
-                <td></td>
+            <tr>
                 <td>
-                    <button ng-click="verifyEthereumAccount()">
-                        Add Ethereum Account Verification
-                    </button>
+
+                </td>
+                <td>
+                    <!--<div ng-show="currentUser.userId === key.cryptonomicaUserId">-->
+                    <div>
+                        <button ng-click="verifyEthereumAccount()">
+                            Ethereum Account Verification
+                        </button>
+                    </div>
                 </td>
             </tr>
 

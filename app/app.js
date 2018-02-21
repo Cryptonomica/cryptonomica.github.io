@@ -140,9 +140,10 @@ app.run([
             $rootScope.login = function () { // shows auth window from Google
                 // see: https://github.com/maximepvrt/angular-google-gapi/tree/master#signup-with-google
                 GAuth.login().then(function (user) {
+                    $log.debug('[app.js] user (google)');
+                    $log.debug(user); // undefined -- in ver. 1.0.0-beta.1 (works in 1.0.1, but 1.0.1 is slower);
                     $rootScope.googleUser = user;
-                    $log.debug('[app.js]' + user.name + ' is logged in:');
-                    $log.debug(user);
+                    // $log.debug('[app.js]' + user.name + ' is logged in:');
                     // your application can access their Google account
                     // $rootScope.getUserData(); //
                     $rootScope.checkAuth(); // this includes $rootScope.getUserData()
@@ -169,6 +170,18 @@ app.run([
                         //$rootScope.getUserData();
                         $state.go('registration');
                     });
+            };
+
+            $rootScope.stringIsNullUndefinedOrEmpty = function (str) {
+                return typeof str === 'undefined' || str === null || str.length === 0;
+            };
+
+            $rootScope.unixTimeFromDate = function (date) {
+                return Math.round(date.getTime() / 1000);
+            };
+
+            $rootScope.dateFromUnixTime = function (unixTime) {
+                return new Date(unixTime * 1000);
             };
 
             // =============== Function calls:

@@ -7,13 +7,6 @@
 * API: http://openpgpjs.org/openpgpjs/doc/
 * */
 
-/*
-* kbpgp.js
-* https://github.com/keybase/kbpgp
-* https://www.npmjs.com/package/kbpgp
-* https://keybase.io/kbpgp
-* */
-
 $(function () {
 
     console.log("app.js is loaded");
@@ -45,7 +38,6 @@ $(function () {
             }
         }();
     console.log("storageAvailable: " + storageAvailable);
-
 
     var myPublicKey;
     var myPrivateKey;
@@ -176,9 +168,6 @@ $(function () {
             return;
         }
 
-        // var publicKey = openpgp.key.readArmored(armoredPubKey).keys[0];
-        // var clearMessage = openpgp.cleartext.readArmored(armoredMessage);
-
         openpgp.verify(options).then(function (verified) {
             var validity = verified.signatures[0].valid; // true
             console.log("verified.signatures:");
@@ -228,33 +217,6 @@ $(function () {
         return true;
     }
 
-    function generateKeysKbpgpOptions() {
-
-        var F = kbpgp["const"].openpgp;
-
-        var genOpts = makeGenerateKeysOptions();
-
-        var opts = {
-            userid: genOpts.userId,
-            primary: {
-                nbits: genOpts.numBits,
-                flags: F.certify_keys | F.sign_data | F.auth | F.encrypt_comm | F.encrypt_storage,
-                expire_in: genOpts.expire_in
-            }
-            ,
-            subkeys: [
-                {
-                    nbits: genOpts.numBits,
-                    flags: F.sign_data,
-                    expire_in: genOpts.expire_in
-                }
-            ]
-        };
-        console.log('generateKeysKbpgpOptions() : ');
-        console.log(JSON.stringify(opts));
-        return opts;
-    }
-
     function emptyKeyData() {
         $("#keyId").text("");
         $("#fingerprint").text("");
@@ -293,11 +255,10 @@ $(function () {
             keyExpirationTime: genOpts.expire_in
         };
 
-        openpgp
         // (static) generateKey(userIds, passphrase, numBits, unlocked, keyExpirationTime) → {Promise.<Object>}
+        openpgp
             .generateKey(options)
             .then(function (key) {
-
                 var privkey = key.privateKeyArmored; // '-----BEGIN PGP PRIVATE KEY BLOCK ... '
                 console.log("privkey:");
                 console.log(privkey);
@@ -315,46 +276,6 @@ $(function () {
             });
 
     }); // end #generateKeysOpenPGPjs
-
-    $("#generateKeysKbpgp").click(function () {
-
-            $("#statusMessage").text("Generating key, please wait ...");
-            emptyKeyData();
-            var genOpts = makeGenerateKeysOptions();
-            var opts = generateKeysKbpgpOptions();
-            console.log("start generating key pair...");
-            // see: https://keybase.io/kbpgp/docs/generating_a_pair
-            kbpgp.KeyManager.generate(opts, function (err, keyPairKbpgp) {
-                if (err) {
-                    console.log(err);
-                }
-                if (!err) {
-                    // sign subkeys
-                    keyPairKbpgp.sign({}, function (err) {
-
-                        console.log(keyPairKbpgp);
-
-                        // export demo; dump the private with a passphrase
-                        keyPairKbpgp.export_pgp_private({
-                            // passphrase: 'booyeah!'
-                            passphrase: genOpts.passphrase
-                        }, function (err, pgp_private) {
-                            console.log("private key: ", pgp_private);
-                            $("#privkeyShow").val(pgp_private);
-                        });
-                        //
-                        keyPairKbpgp.export_pgp_public({}, function (err, pgp_public) {
-                            console.log("public key: ", pgp_public);
-                            $('#pubkeyShow').val(pgp_public);
-                        });
-                        //
-                    });
-                    $("#statusMessage").text("");
-                }
-            });
-            /* --end- */
-        }
-    );
 
     $("#saveSignedMessageAsFile").click(function () {
         var signedMessage = $("#signedMessage").val();
@@ -405,7 +326,6 @@ $(function () {
         }
         $('#publicKeyLocalStorageMessage').text(message);
     });
-
 
     $("#savePrivateKeyToLocalStorageButton").click(function () {
         var message;
@@ -530,68 +450,68 @@ $(function () {
     });
 
     // Read Public key data with Kbpgp
-    $("#readPublicKeyDataKbpgp").click(function () {
-
-        // var alice_pgp_key = "-----BEGIN PGP PUBLIC ... etc.";
-        //
-        // kbpgp.KeyManager.import_from_armored_pgp({
-        //     armored: alice_pgp_key
-        // }, function(err, alice) {
-        //     if (!err) {
-        //         console.log("alice is loaded");
-        //     }
-        // });
-
-        var publicKeyArmored = $('#pubkeyShow').val();
-        var key;
-        kbpgp.KeyManager.import_from_armored_pgp({
-            armored: publicKeyArmored
-        }, function (err, keyImported) {
-            if (!err) {
-                console.log("key is loaded:");
-                console.log(keyImported);
-                key = keyImported;
-            }
-        });
-
-        var fingerprint = key.get_pgp_fingerprint().toString('hex').toUpperCase();
-        var userEmail = key.pgp.userids[0].components.email;
-        var userName = key.pgp.userids[0].components.username;
-        var userId = userName + " <" + userEmail + ">";
-        //
-        var created = new Date(key.primary.lifespan.generated * 1000);
-
-        //
-        /*
-         // OpenPGP.js:
-         var exp = new Date(
-         publicKey.keys[0].primaryKey.created.getTime()
-         + (publicKey.keys[0].getPrimaryUser().selfCertificate.keyExpirationTime * 1000)
-         );
-         */
-
-        /*
-        var exp = new Date(
-            key.primary.lifespan.generated * 1000
-            + key.primary.lifespan.expire_in * 1000
-        ); // possible bug, see: https://github.com/keybase/kbpgp/issues/75*/
-
-        console.log("key.primary.lifespan: ");
-        console.log(key.primary.lifespan);
-        var exp = new Date(
-            (key.primary.lifespan.generated + key.primary.lifespan.expire_in) * 1000
-        ); // possible bug, see: https://github.com/keybase/kbpgp/issues/75
-
-        console.log(fingerprint);
-        console.log(userId);
-        console.log(created);
-        console.log(exp);
-
-        $("#fingerprint").text(fingerprint);
-        $("#userId").text(userId);
-        $("#created").text(created);
-        $("#exp").text(exp);
-    });
+    // $("#readPublicKeyDataKbpgp").click(function () {
+    //
+    //     // var alice_pgp_key = "-----BEGIN PGP PUBLIC ... etc.";
+    //     //
+    //     // kbpgp.KeyManager.import_from_armored_pgp({
+    //     //     armored: alice_pgp_key
+    //     // }, function(err, alice) {
+    //     //     if (!err) {
+    //     //         console.log("alice is loaded");
+    //     //     }
+    //     // });
+    //
+    //     var publicKeyArmored = $('#pubkeyShow').val();
+    //     var key;
+    //     kbpgp.KeyManager.import_from_armored_pgp({
+    //         armored: publicKeyArmored
+    //     }, function (err, keyImported) {
+    //         if (!err) {
+    //             console.log("key is loaded:");
+    //             console.log(keyImported);
+    //             key = keyImported;
+    //         }
+    //     });
+    //
+    //     var fingerprint = key.get_pgp_fingerprint().toString('hex').toUpperCase();
+    //     var userEmail = key.pgp.userids[0].components.email;
+    //     var userName = key.pgp.userids[0].components.username;
+    //     var userId = userName + " <" + userEmail + ">";
+    //     //
+    //     var created = new Date(key.primary.lifespan.generated * 1000);
+    //
+    //     //
+    //     /*
+    //      // OpenPGP.js:
+    //      var exp = new Date(
+    //      publicKey.keys[0].primaryKey.created.getTime()
+    //      + (publicKey.keys[0].getPrimaryUser().selfCertificate.keyExpirationTime * 1000)
+    //      );
+    //      */
+    //
+    //     /*
+    //     var exp = new Date(
+    //         key.primary.lifespan.generated * 1000
+    //         + key.primary.lifespan.expire_in * 1000
+    //     ); // possible bug, see: https://github.com/keybase/kbpgp/issues/75*/
+    //
+    //     console.log("key.primary.lifespan: ");
+    //     console.log(key.primary.lifespan);
+    //     var exp = new Date(
+    //         (key.primary.lifespan.generated + key.primary.lifespan.expire_in) * 1000
+    //     ); // possible bug, see: https://github.com/keybase/kbpgp/issues/75
+    //
+    //     console.log(fingerprint);
+    //     console.log(userId);
+    //     console.log(created);
+    //     console.log(exp);
+    //
+    //     $("#fingerprint").text(fingerprint);
+    //     $("#userId").text(userId);
+    //     $("#created").text(created);
+    //     $("#exp").text(exp);
+    // });
 
     $('#signMessage').click(function (event) {
 

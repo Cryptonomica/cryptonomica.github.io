@@ -173,6 +173,17 @@
                 </label>
                 <br>
             </fieldset>
+
+            <div id="asciiArmoredKeyError"
+                 ng-show="asciiArmoredKeyError"
+                 class="alert alert-danger alert-dismissible"
+                 role="alert">
+                <!--<button type="button" class="close" data-dismiss="alert">-->
+                    <!--<span ng-click="asciiArmoredKeyError=null">&times;</span>-->
+                <!--</button>-->
+                {{asciiArmoredKeyError}}
+            </div>
+
             <button
                     class="btn btn-secondary"
                     role="button"
@@ -187,10 +198,20 @@
 
 </div>
 <!-- alerts on bottom -->
-<div ng-show="resp.error.message" class="alert alert-danger alert-dismissible" role="alert">
+<div ng-show="resp.error.message"
+     class="alert alert-danger alert-dismissible"
+     role="alert">
+    <button type="button" class="close" data-dismiss="alert">
+        <span ng-click="resp.error.message=null">&times;</span>
+    </button>
     {{resp.error.message}}
 </div>
-<div ng-show="resp.messageToUser" class="alert alert-success alert-dismissible" role="alert">
+<div ng-show="resp.messageToUser"
+     class="alert alert-success alert-dismissible"
+     role="alert">
+    <button type="button" class="close" data-dismiss="alert">
+        <span ng-click="resp.messageToUser=null">&times;</span>
+    </button>
     {{resp.messageToUser}}
 </div>
 <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
