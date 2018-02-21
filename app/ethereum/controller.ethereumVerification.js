@@ -427,6 +427,8 @@ controller.controller(controller_name, [
                                                                 priceForVerificationInWei,
                                                                 "ether"
                                                             );
+                                                        $log.debug("$scope.smartContractData.priceForVerificationInEth:");
+                                                        $log.debug($scope.smartContractData.priceForVerificationInEth);
                                                         $scope.$apply();
                                                     }
                                                 ).catch(function (error) {
@@ -543,6 +545,7 @@ controller.controller(controller_name, [
                                                     $log.info("$scope.verify() resp: ");
                                                     $log.info(resp);
                                                     $scope.verificationResult = resp;
+                                                    $scope.requestDataFromSmartContract();
                                                     // $scope.$apply(); // not needed here
                                                     $timeout($rootScope.progressbar.complete(), 1000);
                                                 },
@@ -556,10 +559,7 @@ controller.controller(controller_name, [
                                             );
                                         };
 
-                                        // TODO: continue here >>>>>>>
-                                        // ?
-
-
+                                        // ---
                                     }, function (getPGPPublicKeyByFingerprintError) {
                                         $scope.getPGPPublicKeyByFingerprintError = getPGPPublicKeyByFingerprintError;
                                         $log.debug("$scope.getPGPPublicKeyByFingerprintError : ");
