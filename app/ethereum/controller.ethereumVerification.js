@@ -333,10 +333,10 @@ controller.controller(controller_name, [
                                             )
                                                 .then(
                                                     function (ethAddressConnectedToFingerprint) {
-                                                        $log.info('[$scope.requestDataFromSmartContract] $scope.contract.addressAttached: ');
-                                                        $log.info(ethAddressConnectedToFingerprint);
                                                         $scope.smartContractData.ethAddressConnectedToFingerprint = ethAddressConnectedToFingerprint;
                                                         $scope.$apply();
+                                                        $log.info('[$scope.requestDataFromSmartContract] $scope.smartContractData.ethAddressConnectedToFingerprint: ');
+                                                        $log.info($scope.smartContractData.ethAddressConnectedToFingerprint);
                                                         // --------------------- with ethAddressConnectedToFingerprint:
                                                         // (0)
                                                         $scope.contract.verification.call(ethAddressConnectedToFingerprint)
