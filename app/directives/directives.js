@@ -60,7 +60,9 @@
         return {
             restrict: 'EA', //E = element, A = attribute, C = class, M = comment
             // <media-stream-recorder></media-stream-recorder>
-            templateUrl: 'app/directives/mediaStreamRecorder.html'
+            // templateUrl: 'app/directives/mediaStreamRecorder.html'
+            // was: 'app/directives/mediaStreamRecorder.2016-07-03.min.html'
+            templateUrl: 'app/directives/mediaStreamRecorder.2017-08-31.min.html'
         };
     });
     // ------------------------------------------------------------------------------
