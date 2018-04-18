@@ -1,0 +1,9 @@
+
+= TODO
+
+* [ ] when new key uploaded in the message make fingerprint a link: user can go to key certificate page immediately
+* [ ] repair video recording (only first seconds are recorded)
+* [ ] make expired keys in list of user keys shadowed
+* [ ] update to next version of angular-google-gapi and change all controllers to support new version
+* [ ] move from bootstrap to semantic ui
+
