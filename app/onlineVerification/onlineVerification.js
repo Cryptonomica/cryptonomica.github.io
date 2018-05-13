@@ -406,6 +406,7 @@
             $scope.promoCode = null;
             $scope.getPriceForKeyVerificationIsWorking = false;
             $scope.getPriceForKeyVerification = function () {
+                $log.debug("$scope.getPriceForKeyVerification started");
                 $scope.getPriceForKeyVerificationIsWorking = true;
                 GApi.executeAuth(
                     'stripePaymentsAPI',
@@ -432,7 +433,6 @@
                     }
                 )
             };
-            $scope.applyPromoCode = $scope.getPriceForKeyVerification;
 
             $scope.getVideoUploadKey = function () {
                 GApi.executeAuth('onlineVerificationAPI', 'getVideoUploadKey')
