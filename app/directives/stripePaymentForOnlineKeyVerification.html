@@ -67,12 +67,36 @@
                         <input type="text" size="3" maxlength="3" ng-model="stripePaymentForm.cardCVC">
                     </legend>
                 </div>
+
                 <div class="form-row">
                     <legend>
                         <span>price:</span>
                         <input type="text" size="3" ng-model="priceForKeyVerification" disabled>
-                        <span>USD</span>
+                        <!--<span>USD</span>-->
+                        <span>EUR</span>
                     </legend>
+                </div>
+
+                <!-- Promo Code -->
+                <div id="promoCodeSection">
+                    <div class="form-row">
+                        <legend>
+                            <span>promo code (case sensitive):</span>
+                            <input type="text" size="11" ng-model="promoCode">
+                        </legend>
+                        <button id="applyPromoCode"
+                                class="submit btn btn-secondary"
+                                ng-class="{disabled: getPriceForKeyVerificationIsWorking}"
+                                ng-click="applyPromoCode()"
+                                role="button"
+                                type="button">
+                            Apply Promo Code
+                            <span ng-show="getPriceForKeyVerificationIsWorking" title="working...">
+                                <br>
+                                <i class="fa fa-refresh fa-spin fa-fw"></i>
+                            </span>
+                        </button>
+                    </div>
                 </div>
 
                 <center>
@@ -96,6 +120,7 @@
                         <br><i class="fa fa-refresh fa-spin fa-fw"></i>
                     </span>
                     </button>
+
                 </center>
             </form>
         </div>

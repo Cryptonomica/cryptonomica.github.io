@@ -403,29 +403,36 @@
             }
 
             /* Functions for steps, that should be called when step loaded */
-
+            $scope.promoCode = null;
+            $scope.getPriceForKeyVerificationIsWorking = false;
             $scope.getPriceForKeyVerification = function () {
+                $scope.getPriceForKeyVerificationIsWorking = true;
                 GApi.executeAuth(
                     'stripePaymentsAPI',
                     'getPriceForKeyVerification',
-                    {"fingerprint": $stateParams.fingerprint}
+                    {
+                        "fingerprint": $stateParams.fingerprint,
+                        "promoCode": $scope.promoCode
+                    }
                 ).then(
                     function (IntegerWrapperObject) {
                         $scope.priceForKeyVerification = IntegerWrapperObject.number / 100; // from cents to dollars
                         console.log("$scope.priceForKeyVerification: ");
                         console.log($scope.priceForKeyVerification);
+                        $scope.getPriceForKeyVerificationIsWorking = false;
                         $timeout($rootScope.progressbar.complete(), 1000);
                         // $scope.$apply(); // not here
-
                     }, function (getPriceForKeyVerificationError) {
                         $scope.getPriceForKeyVerificationError = getPriceForKeyVerificationError;
                         console.log("$scope.getPriceForKeyVerificationError : ");
                         $log.error($scope.getPriceForKeyVerificationError);
+                        $scope.getPriceForKeyVerificationIsWorking = false;
                         $timeout($rootScope.progressbar.complete(), 1000);
                         // $scope.$apply(); // not here
                     }
                 )
             };
+            $scope.applyPromoCode = $scope.getPriceForKeyVerification;
 
             $scope.getVideoUploadKey = function () {
                 GApi.executeAuth('onlineVerificationAPI', 'getVideoUploadKey')
@@ -526,6 +533,7 @@
             $scope.submitPayment = function () {
                 $rootScope.progressbar.start(); // <<<<<<<<<<<
                 $scope.submitPaymentWorking = true;
+                $scope.stripePaymentForm.promoCode = $scope.promoCode;
                 $log.info($scope.stripePaymentForm);
                 GApi.executeAuth('stripePaymentsAPI', 'processStripePayment', $scope.stripePaymentForm)
                     .then(
