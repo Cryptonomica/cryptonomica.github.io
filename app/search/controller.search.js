@@ -43,6 +43,7 @@
                     }
                 );
 
+                // main function:
                 $scope.doSearch = function () {
                     $rootScope.working = true;
                     $scope.resp = null;

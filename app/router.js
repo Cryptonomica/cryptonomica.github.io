@@ -22,8 +22,8 @@ router
                 .state('home', {
                     url: '/',
                     controller: 'cryptonomica.controller.home',
-                    // templateUrl: 'app/home/home.html',
-                    templateUrl: 'app/landing/landing.html',
+                    templateUrl: 'app/home/home.html',
+                    // templateUrl: 'app/landing/landing.html',
                     // resolve: {
                     //     goat: function (GoatService) {
                     //         return GoatService.getGoat();
@@ -50,11 +50,6 @@ router
                     controller: 'cryptonomica.controller.viewprofile',
                     templateUrl: 'app/viewprofile/viewprofile.html'
                 })
-                // .state('showkey', {
-                //     url: '/showkey/{websafestring}',
-                //     controller: 'cryptonomica.controller.showkey',
-                //     templateUrl: 'app/showkey/showkey.html'
-                // })
                 .state('key', {
                     url: '/key/{fingerprint}',
                     controller: 'cryptonomica.controller.key',
@@ -114,6 +109,11 @@ router
                     url: '/openPGPOnline',
                     controller: 'cryptonomica.controller.openPGPOnline',
                     templateUrl: 'app/openPGPOnline/openPGPOnline.html'
+                })
+                .state('openPGPSoftware', {
+                    url: '/openPGPSoftware',
+                    // controller: '',
+                    templateUrl: 'app/openPGPSoftware/openPGPSoftware.html'
                 })
                 // .state('onlineVerificationVideo', {
                 //     url: '/onlineVerificationVideo/{fingerprint}',

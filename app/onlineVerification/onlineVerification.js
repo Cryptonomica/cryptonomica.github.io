@@ -69,6 +69,10 @@
             $scope.alertInfo = null;    // blue
             $scope.alertSuccess = null; // green
             //
+            $scope.setFlag = function () {
+                $scope.flag = [$scope.nationality.toLowerCase(), 'flag']
+            };
+            //
             $scope.error = {};
             $scope.getOnlineVerificationError = false;
             $scope.fingerprint = $stateParams.fingerprint;
@@ -233,7 +237,8 @@
                                     $log.info('uploading...');
                                     uiUploader.startUpload({
                                         //url: 'http://realtica.org/ng-uploader/demo.html',
-                                        url: $sce.trustAsResourceUrl('/docs'),
+                                        url: $sce.trustAsResourceUrl('https://cryptonomica-server.appspot.com/docs'),
+                                        // url: $sce.trustAsResourceUrl('/docs'),
                                         //concurrency: 1, //
                                         options: {
                                             withCredentials: true

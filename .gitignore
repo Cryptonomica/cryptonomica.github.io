@@ -159,6 +159,6 @@ sftp-config.json
 .directory
 
 # vendor dir files:
-
-!/vendors/angular-google-gapi/1.0.1/dist/angular-google-gapi.min.js
-!/vendors/angular-google-gapi/1.0.1/dist/angular-google-gapi.js
+#
+#!/vendors/angular-google-gapi/1.0.1/dist/angular-google-gapi.min.js
+#!/vendors/angular-google-gapi/1.0.1/dist/angular-google-gapi.js

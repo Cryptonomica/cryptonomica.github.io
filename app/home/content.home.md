@@ -1,3 +1,21 @@
+
+## What is Cryptonomica?
+
+Cryptonomica is the global database of verified identities with service for signing electronic documents and online 
+dispute resolution.
+
+## Why it's useful for me?
+                                
+With Cryptonomica you can generate and upload your public cryptographic key (OpenPGP standard) to global database, 
+and add to this key verified data about key owner, i.e. about you. Than you can use your key to securely sign documents 
+worldwide, to encrypt documents, to resolve disputes online - faster and more comfortable than ever.
+
+## How is it different from Docusign, Adobesign, and local digital signature services?
+
+We provide real identity check. As much verification as possible. We have notaries connected to our system and we have 
+our officers/representatives in different countries for face-to-face person identification. 
+We use best security practices and reliable open source cryptography. And it's global.
+
 -------------------------------------
 
 For the detailed idea and project description see:
@@ -9,7 +27,7 @@ Cryptonomica keys server provide for it's user information about registered Cryp
 and their verified public [PGP](https://en.wikipedia.org/wiki/Pretty_Good_Privacy) keys.
 
 
-#### To become member of Cryptonomica:
+## To become member of Cryptonomica:
 
 1) Generate your [OpenPGP](https://github.com/Cryptonomica/cryptonomica/wiki/Public-PGP-Key) keys using
 [recommended software](https://github.com/Cryptonomica/arbitration-rules/blob/master/Arbitration_Rules/IACC/web-site/list.of.recommended.OpenPGP.software.md).
@@ -33,7 +51,7 @@ or authorized Cryptonomica officer (write to support@cryptonomica.net),
 and meet him/her in person, and provide appropriate documents (passport or other ID document)
 
 
-#### Using verified user's public key you can:
+### Using verified user's public key you can:
 
 1. Verify his/her signature on contract or another legally binding documents.
 Signature done with verified key is considered as user's own signature on document in arbitration tribunal
