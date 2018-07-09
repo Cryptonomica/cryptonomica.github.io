@@ -25,7 +25,8 @@ app.config(function ($sceDelegateProvider) {
         'self', // Allow same origin resource loads
         'https://cryptonomica-server.appspot.com/**',
         'https://lh3.googleusercontent.com/**', // files (photos)  from blob storage service
-        'https://raw.githubusercontent.com/Cryptonomica/arbitration-rules/**' // works!
+        'https://raw.githubusercontent.com/Cryptonomica/arbitration-rules/**', // works!
+        'https://raw.githubusercontent.com/Cryptonomica/arbitration-rules/master/README.md'
     ]);
 });
 
@@ -188,8 +189,10 @@ app.run([
             };
 
             $rootScope.currentUser = {}; //
+
             $rootScope.getUserData = function () {  // we use this in $rootScope.checkAuth
                 $rootScope.progressbar.start();
+
                 GApi.executeAuth('cryptonomicaUserAPI', 'getMyUserData') // async
                     .then(function (resp) {
                         // (!) we always have response

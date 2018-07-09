@@ -57,6 +57,7 @@
                                     <button ng-click="verifyEthereumAccount()"
                                             ng-show="(currentUser && key && (currentUser.userId == key.cryptonomicaUserId))"
                                             class="small ui violet right floated button">
+                                        <i class="ethereum icon"></i>&nbsp;
                                         Ethereum Account Verification
                                     </button>
 
@@ -64,6 +65,7 @@
                                             ng-show="(currentUser && key && (currentUser.userId == key.cryptonomicaUserId)) || (currentUser && currentUser.cryptonomicaOfficer)||(currentUser && currentUser.notary)"
                                             class="small ui teal right floated button"
                                             ui-sref="onlineVerificationView({fingerprint:key.fingerprint})">
+                                        <i class="icofont icofont-data"></i>&nbsp;
                                         Show verification data
                                     </button>
 
@@ -71,6 +73,7 @@
                                             ng-show="(currentUser && key && (currentUser.userId == key.cryptonomicaUserId)) && !key.verifiedOnline"
                                             class="small positive ui right floated button"
                                             ng-click="verifyOnline()">
+                                        <i class="fa fa-certificate"></i>&nbsp;
                                         Verify Key Online
                                     </button>
 

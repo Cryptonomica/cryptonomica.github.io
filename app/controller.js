@@ -14,6 +14,7 @@ var controller = angular.module('cryptonomica.controller', [
         'cryptonomica.controller.onlineVerificationView',
         'cryptonomica.controller.ethereumVerification',
         'cryptonomica.controller.openPGPOnline',
-        'cryptonomica.controller.test'
+        'cryptonomica.controller.test',
+        'cryptonomica.controller.arbitration'
     ]
 );

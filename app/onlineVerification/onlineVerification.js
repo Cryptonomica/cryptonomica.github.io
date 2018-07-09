@@ -157,8 +157,11 @@
                             $anchorScroll();
                         } else if ($scope.onlineVerification.onlineVerificationFinished) {
                             $scope.alertInfo = 'You entered all required data.'
-                                + ' Please wait for data verification by our compliance officer.';
+                                + ' Please wait for data verification by our compliance officer.'
+                                + " We'll send a message to "
+                                + $rootScope.currentUser.email;
                             $location.hash('alertInfo');
+
                             $anchorScroll();
                         } else {
                             // check current verification step:
@@ -480,7 +483,8 @@
             $scope.sendSms = function () {
                 $rootScope.progressbar.start(); // <<<<<<<<<<<
                 $log.info('$scope.sendSms ...');
-                GApi.executeAuth('onlineVerificationAPI',
+                GApi.executeAuth(
+                    'onlineVerificationAPI',
                     'sendSms',
                     {
                         "fingerprint": $stateParams.fingerprint,

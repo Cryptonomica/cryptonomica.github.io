@@ -88,6 +88,14 @@ textarea {
 
 }
 
+/* http://stackoverflow.com/a/36426886/1697878 */
+/* Then, simply wrap the expression (for ex) in your html:
+<span class="capitalize">{{ uppercase_expression }}</span>
+No js needed */
+.capitalize {
+    text-transform: capitalize;
+}
+
 .textAreaWithKey {
     font-size: 75% !important;
 }
@@ -135,3 +143,41 @@ a .socialLogo:hover {
 }
 
 /* ----------------------------  */
+
+/* for video recording: */
+
+@keyframes blink {
+    50% {
+        border-color: rgba(255, 0, 0, 0.77);
+        background-color: rgba(255, 0, 0, 0.77);
+        color: rgba(255, 255, 255, 1);
+    }
+}
+
+.recording {
+    animation: blink .5s step-end infinite alternate;
+}
+
+.paused {
+    background-color: yellow;
+    color: black !important;
+}
+
+.video-status {
+    color: rgba(255, 255, 255, 0) !important;
+}
+
+/* ---------------------*/
+
+.verificationDoc {
+    height: 350px;
+}
+
+.my-file-input-element {
+    color: black;
+    /*border-color: black;*/
+    /*border-style: dotted;*/
+    /*border-width: thin;*/
+    /*padding: 0.5em;*/
+}
+

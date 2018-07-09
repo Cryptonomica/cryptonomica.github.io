@@ -60,11 +60,6 @@ router
                     controller: 'cryptonomica.controller.verification',
                     templateUrl: 'app/verification/verification.html'
                 })
-                .state('arbitrationrules', {
-                    url: '/arbitrationrules',
-                    // controller: '',
-                    templateUrl: 'app/arbitrationrules/arbitration-rules.html'
-                })
                 .state('termsOfService', {
                     url: '/termsOfService',
                     // controller: '',
@@ -79,6 +74,11 @@ router
                     url: '/showallarbitrators',
                     controller: 'cryptonomica.controller.showallarbitrators',
                     templateUrl: 'app/arbitrators/showallarbitrators.html'
+                })
+                .state('arbitration', {
+                    url: '/arbitration',
+                    controller: 'cryptonomica.controller.arbitration',
+                    templateUrl: 'app/arbitration/arbitration.html'
                 })
                 .state('notaries', {
                     url: '/notaries',

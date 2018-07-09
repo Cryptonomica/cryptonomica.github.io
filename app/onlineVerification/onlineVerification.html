@@ -54,35 +54,58 @@
                                 <div id="alerts">
 
                                     <!-- Errors from server -->
-                                    <div id="errorMessage" ng-show="error.message"
-                                         class="alert alert-danger alert-dismissible" role="alert">
-                                        {{error.message}}
-                                        <button type="button" class="close" data-dismiss="alert"
-                                                aria-label="Close"><span
-                                                aria-hidden="true">×</span></button>
+                                    <!--<div id="errorMessage" ng-show="error.message"-->
+                                    <!--class="alert alert-danger alert-dismissible" role="alert">-->
+                                    <!--{{error.message}}-->
+                                    <!--<button type="button" class="close" data-dismiss="alert"-->
+                                    <!--aria-label="Close"><span-->
+                                    <!--aria-hidden="true">×</span></button>-->
+                                    <!--</div>-->
+
+                                    <div id="errorMessage" ng-show="error.message" class="ui negative message">
+                                        <i class="close icon" ng-click="error.message=null"></i>
+                                        <div class="header">Error:</div>
+                                        <p>{{error.message}}</p>
                                     </div>
+
                                     <!-- Auth error -->
+                                    <!--<div id="authError" ng-hide="currentUser.registeredCryptonomicaUser"-->
+                                    <!--class="alert alert-danger alert-dismissible"-->
+                                    <!--role="alert">-->
+                                    <!--User not registered or not logged in-->
+                                    <!--<button type="button" class="close" data-dismiss="alert"-->
+                                    <!--aria-label="Close"><span-->
+                                    <!--aria-hidden="true">×</span></button>-->
+                                    <!--</div>-->
+
                                     <div id="authError" ng-hide="currentUser.registeredCryptonomicaUser"
-                                         class="alert alert-danger alert-dismissible"
-                                         role="alert">
-                                        User not registered or not logged in
-                                        <button type="button" class="close" data-dismiss="alert"
-                                                aria-label="Close"><span
-                                                aria-hidden="true">×</span></button>
+                                         class="ui negative message">
+                                        <i class="close icon" ng-click="error.message=null"></i>
+                                        <div class="header">Error:</div>
+                                        <p> User not registered or not logged in: try reloading page or click login</p>
                                     </div>
+
                                     <!-- Messages to user -->
-                                    <div id="messageToUser" ng-show="messageToUser"
-                                         class="alert alert-success alert-dismissible" role="alert">
-                                        {{messageToUser}}
-                                        <button type="button" class="close" data-dismiss="alert"
-                                                aria-label="Close"><span
-                                                aria-hidden="true">×</span></button>
+                                    <!--<div id="messageToUser" ng-show="messageToUser"-->
+                                    <!--class="alert alert-success alert-dismissible" role="alert">-->
+                                    <!--{{messageToUser}}-->
+                                    <!--<button type="button" class="close" data-dismiss="alert"-->
+                                    <!--aria-label="Close"><span-->
+                                    <!--aria-hidden="true">×</span></button>-->
+                                    <!--</div>-->
+
+                                    <div id="messageToUser" ng-show="messageToUser" class="ui positive message">
+                                        <i class="close icon" ng-click="messageToUser=null"></i>
+                                        <!--<div class="header">Success:</div>-->
+                                        <p>{{messageToUser}}</p>
                                     </div>
+
                                     <input type="text" name="errorGate" id="errorGate" ng-model="error.message" hidden>
+
                                 </div>
 
                                 <div id="keyInfo" ng-show="pgpPublicKey">
-                                    <hr>
+                                    <!--<hr>-->
                                     <center>
                                         <p>
                                             Verification for key:
@@ -96,8 +119,7 @@
                                             </a>
                                         </p>
                                     </center>
-
-                                    <hr>
+                                    <!--<hr>-->
                                 </div>
 
                                 <div id="mainPart" ng-show="!notAllowed">

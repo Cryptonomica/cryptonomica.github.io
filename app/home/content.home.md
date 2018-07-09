@@ -55,16 +55,14 @@ and meet him/her in person, and provide appropriate documents (passport or other
 
 1. Verify his/her signature on contract or another legally binding documents.
 Signature done with verified key is considered as user's own signature on document in arbitration tribunal
-under [IACC Arbitration Rules](https://github.com/Cryptonomica/arbitration-rules/blob/master/Arbitration_Rules/IACC/IACC-Arbitration-Rules.EN.signed.md),
-and thus such contract, agreement or obligation will be *legally* (yes, [we](#/#team) are not only hackers,
-but lawyers, trust us ...) recognizable and enforceable in all counties - parties of
+under our [Arbitration Rules](https://github.com/Cryptonomica/arbitration-rules/blob/master/Arbitration_Rules/IACC/IACC-Arbitration-Rules.EN.signed.md),
+and thus such contract, agreement or obligation will be *legally* recognizable and enforceable in all counties - parties of
 [The New York Convention 1958](http://en.wikisource.org/wiki/Convention_on_the_Recognition_and_Enforcement_of_Foreign_Arbitral_Awards) (currently [156](http://en.wikipedia.org/wiki/Convention_on_the_Recognition_and_Enforcement_of_Foreign_Arbitral_Awards#Parties_to_the_Convention))
 
 2. Encrypt a message (any file) to key's owner, that only he/she can decrypt it.
 
-3. File a case for online dispute resolution in
-[The International Arbitration and Cryptography Centre (IACC)](https://cryptonomica.net).
-IACC is a permanent arbitration court registered in London, U.K.,
+3. File a case for online dispute resolution in our online arbitration.
+Cryptonomica Ltd. is a permanent arbitration court registered in London, U.K.,
 providing online dispute resolution using modern information technologies.
 
 To file a case just send your claim (notice of arbitration) by email to registrar@international-arbitration.org.uk
@@ -72,4 +70,4 @@ To file a case just send your claim (notice of arbitration) by email to registra
 See:
 [more info on abitration](https://github.com/Cryptonomica/arbitration-rules)
 and
-[IACC Arbitration Rules](https://github.com/Cryptonomica/arbitration-rules/blob/master/Arbitration_Rules/IACC/IACC-Arbitration-Rules.EN.signed.md)
+[Arbitration Rules](https://github.com/Cryptonomica/arbitration-rules/blob/master/Arbitration_Rules/IACC/IACC-Arbitration-Rules.EN.signed.md)

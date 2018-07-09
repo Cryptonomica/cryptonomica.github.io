@@ -29,8 +29,12 @@
         <span class="hiddenCollapse">Home</span>
     </a>
 
-
-    <!-- for registered users: -->
+    <a id="registration" class="item" href="" ui-sref-active="active" ui-sref="registration"
+       ng-hide="(currentUser&&currentUser.registeredCryptonomicaUser)&&(currentUser.userInfo !=='Neo')">
+        <!--ng-show="(currentUser&&currentUser.registeredCryptonomicaUser)&&(currentUser.webmaster||currentUser.tester)">-->
+        <i class="fa fa-user-plus titleIcon"></i>
+        <span class="hiddenCollapse">Registration</span>
+    </a>
 
     <a id="viewprofile" class="item" href="" ui-sref-active="active" ui-sref="viewprofile({userId:currentUser.userId})"
        ng-show="currentUser&&currentUser.registeredCryptonomicaUser">
@@ -51,6 +55,16 @@
         <span class="hiddenCollapse">OpenPGP Online</span>
     </a>
 
+    <a id="arbitration" class="item" href="" ui-sref-active="active" ui-sref="arbitration">
+        <i class="icofont icofont-law titleIcon"></i>
+        <span class="hiddenCollapse">Arbitration</span>
+    </a>
+
+    <a id="notaries" class="item" href="" ui-sref-active="active" ui-sref="notaries">
+        <i class="icofont icofont-stamp titleIcon"></i>
+        <span class="hiddenCollapse">Notaries</span>
+    </a>
+
     <!-- for webmaster or tester : -->
     <a id="test" class="item" href="" ui-sref-active="active" ui-sref="test"
        ng-show="(currentUser&&currentUser.registeredCryptonomicaUser)&&(currentUser.userInfo==='Neo')">
@@ -60,11 +74,14 @@
         <span class="hiddenCollapse">Test</span>
     </a>
 
-    <a id="registration" class="item" href="" ui-sref-active="active" ui-sref="registration"
-       ng-hide="(currentUser&&currentUser.registeredCryptonomicaUser)&&(currentUser.userInfo !=='Neo')">
-        <!--ng-show="(currentUser&&currentUser.registeredCryptonomicaUser)&&(currentUser.webmaster||currentUser.tester)">-->
-        <i class="fa fa-user-plus titleIcon"></i>
-        <span class="hiddenCollapse">Registration</span>
+    <a id="issues" class="item" href="https://github.com/Cryptonomica/cryptonomica/issues" target="_blank">
+        <i class="icofont icofont-support-faq titleIcon"></i>
+        <span class="hiddenCollapse">Submit an Issue</span>
+    </a>
+
+    <a id="help" class="item" href="https://github.com/Cryptonomica/cryptonomica/wiki" target="_blank">
+        <i class="fa fa-life-ring titleIcon"></i>
+        <span class="hiddenCollapse">Help/Wiki</span>
     </a>
 
     <!-- supported by -->
