@@ -29,13 +29,13 @@ and their verified public [PGP](https://en.wikipedia.org/wiki/Pretty_Good_Privac
 
 ## To become member of Cryptonomica:
 
-1) Generate your [OpenPGP](https://github.com/Cryptonomica/cryptonomica/wiki/Public-PGP-Key) keys using
+1) Generate your [OpenPGP](https://github.com/Cryptonomica/cryptonomica/wiki/Public-PGP-Key) keys using our [our online service](https://cryptonomica.net/#!/openPGPOnline) or
 [recommended software](https://github.com/Cryptonomica/arbitration-rules/blob/master/Arbitration_Rules/IACC/web-site/list.of.recommended.OpenPGP.software.md).
 Public PGP Key should have one user ID with fist name, last name and user e-mail.
 E-mail in the key should be the same as in Google account, that You use to login to Cryptonomica server
-(You can have Google account with any e-mail, or just use @gmail.com - it's not the worst choice)
+(You can have Google account with any e-mail, or just use [gmail.com](https://mail.google.com) )
 
-We do not provide key generation, and never touch your private key,
+We do not store and never touch your private key,
 you should generate your key on device that only you have access to,
 protect it with password and never send it via Internet or public networks.
 
