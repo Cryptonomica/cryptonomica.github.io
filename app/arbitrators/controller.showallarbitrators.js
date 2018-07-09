@@ -28,7 +28,6 @@
             '$cookies',
             '$timeout',
             '$log',
-            //'ngProgressFactory',
             function showallarbitratorsCtrl($scope,
                                             $rootScope,
                                             $http,
@@ -38,11 +37,8 @@
                                             $state,
                                             $cookies,
                                             $timeout,
-                                            $log
-                                            //ngProgressFactory
-            ) {
-                $log.debug(controller_name, "started");
-
+                                            $log) {
+                $log.debug(controller_name, "started"); //
                 $timeout($rootScope.progressbar.complete(), 1000);
 
                 /* --- Alerts */

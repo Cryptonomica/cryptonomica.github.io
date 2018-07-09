@@ -56,7 +56,8 @@
             * for example: for example: $scope = angular.element(document.getElementById('openPGPOnlineCtrl')).scope();
             * */
 
-            $log.debug(controller_name, "started");
+            $log.debug(controller_name, "started"); //
+            $timeout($rootScope.progressbar.complete(), 1000);
 
             // --- Alerts:
             $scope.alertDanger = null;  // red

@@ -1,5 +1,3 @@
-"use strict";
-
 /*
 * OpenPGP.js
 * http://openpgpjs.org
@@ -8,6 +6,8 @@
 * */
 
 $(function () {
+
+    "use strict";
 
     console.log("app.js is loaded");
 

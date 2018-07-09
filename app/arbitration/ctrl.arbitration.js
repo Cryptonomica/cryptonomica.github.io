@@ -35,8 +35,7 @@
                           $cookies,
                           $timeout) {
 
-            $log.debug(controller_name, "started");
-
+            $log.debug(controller_name, "started"); //
             $timeout($rootScope.progressbar.complete(), 1000);
 
             /* --- Alerts */

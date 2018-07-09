@@ -46,6 +46,9 @@
                               $log,
                               $timeout) {
 
+                $log.debug(controller_name, "started"); //
+                $timeout($rootScope.progressbar.complete(), 1000);
+
                 /* GAuth.checkAuth().then(
                  function () {
                  $rootScope.getUserData(); // async?

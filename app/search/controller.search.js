@@ -23,6 +23,7 @@
             'GData',
             '$state',
             '$cookies',
+            '$timeout',
             function searchCtrl($scope,
                                 $rootScope,
                                 $http,
@@ -31,7 +32,11 @@
                                 GAuth,
                                 GData,
                                 $state,
-                                $cookies) {
+                                $cookies,
+                                $timeout) {
+
+                $log.debug(controller_name, "started"); //
+                $timeout($rootScope.progressbar.complete(), 1000);
 
                 // --- **** get user data
                 GAuth.checkAuth().then(

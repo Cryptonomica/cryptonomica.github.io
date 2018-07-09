@@ -47,7 +47,8 @@
                                $anchorScroll,
                                $stateParams) {
 
-            $log.info(controller_name, " ver. 01 started");
+            $log.debug(controller_name, "started"); //
+            $timeout($rootScope.progressbar.complete(), 1000);
 
             if (!$rootScope.currentUser) {
                 GAuth.checkAuth().then(

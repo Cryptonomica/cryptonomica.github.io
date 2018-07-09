@@ -40,6 +40,9 @@
                                          $cookies,
                                          // ngProgressFactory,
                                          $timeout) {
+
+                $log.debug(controller_name, "started"); //
+                $timeout($rootScope.progressbar.complete(), 1000);
                 // define functions:
                 $scope.searchForNotaries = function () {
                     $rootScope.progressbar.start(); // <<<<<<<<<<<

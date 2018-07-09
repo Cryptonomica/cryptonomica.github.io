@@ -34,7 +34,6 @@
             'Blob',
             '$location',
             '$anchorScroll',
-            // 'UserService',
             function showkeyCtrl($scope,
                                  $rootScope,
                                  $http,
@@ -49,9 +48,11 @@
                                  FileSaver,
                                  Blob,
                                  $location,
-                                 $anchorScroll
-                                 // UserService
-            ) {
+                                 $anchorScroll) {
+
+                $log.debug(controller_name, "started"); //
+                $timeout($rootScope.progressbar.complete(), 1000);
+
                 //
                 $log.info("$stateParams.fingerprint : " + $stateParams.fingerprint);
                 if ($stateParams.fingerprint == ""
