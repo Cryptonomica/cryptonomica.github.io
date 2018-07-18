@@ -73,7 +73,7 @@ app.run([
                   $location,
                   $log) {
 
-            $log.debug('webapp started,  version: ', '3.0');
+            $log.info('webapp started,  version: ', '3.1');
 
             /* --- UI */
             $rootScope.sidebarVisible = true;

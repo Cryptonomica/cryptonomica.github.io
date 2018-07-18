@@ -1,20 +1,30 @@
 
 ## What is Cryptonomica?
 
-Cryptonomica is the global database of verified identities with service for signing electronic documents and online 
-dispute resolution.
+Cryptonomica is the online and offline identity verification service 
+and the global database of verified identities with keys for signing electronic documents, blockchain transactions and KYC.  
+
+We also provide online dispute resolution for contracts signed with verified keys via London based arbitration 
+with awards (decisions) legally enforceable under international law in almost all countries.
+
+Our mission is to use modern technologies such as cryptography, 
+blockchain, decentralized applications, and international law with some law hacks, 
+to build global borderless space for contracts and electronic documents interchange, where applicable law can be chosen 
+and even created by users, but contracts are still recognizable and enforceable in legacy national legal systems.
 
 ## Why it's useful for me?
                                 
-With Cryptonomica you can generate and upload your public cryptographic key (OpenPGP standard) to global database, 
-and add to this key verified data about key owner, i.e. about you. Than you can use your key to securely sign documents 
-worldwide, to encrypt documents, to resolve disputes online - faster and more comfortable than ever.
+With Cryptonomica you can generate, upload to global database and verify your cryptographic key (OpenPGP standard),
+and use these keys to sign legally binding documents, encrypt your communication, resolve disputes online with rules you choose - faster and more comfortable than ever.
+
+You also can verify identity of Ethereum address/key owner, and use it for transactions on the blockchain 
+(smart contracts, verified payments etc.)
 
 ## How is it different from Docusign, Adobesign, and local digital signature services?
 
 We provide real identity check. As much verification as possible. We have notaries connected to our system and we have 
 our officers/representatives in different countries for face-to-face person identification. 
-We use best security practices and reliable open source cryptography. And it's global.
+We use best security practices and reliable open source cryptography. And, unlike national digital signatures services, it's global.
 
 -------------------------------------
 

@@ -111,59 +111,28 @@
             };
             /* ---- */
 
-            GAuth.checkAuth().then(
-                function () {
-                    $log.debug('[ethVerificationCtrl] GAuth.checkAuth(): success');
-                    $rootScope.getUserData(); // async
-                }
-            ).catch(function (error) {
-
-                $log.debug('[ethVerificationCtrl] GAuth.checkAuth() error:');
-                $log.debug(error);
-                // see: https://github.com/maximepvrt/angular-google-gapi/tree/master#signup-with-google
-                GAuth.login().then(function (user) {
-                        // if pop-up in browser does not work we use a button with $rootScope.login();
-                        // $log.debug('[ethVerificationCtrl]' + user.name + ' is logged in:');
-                        $log.debug(user);
-                        $rootScope.checkAuth(); // this includes $rootScope.getUserData() // if we use login button this will be triggered by $rootScope.login()
-                        // your application can access their Google account
-                    }, function () {
-                        $scope.setAlertDanger('login failed');
-                        $log.debug('[ethereumVerificationCtrl} login failed');
-                    }
-                );
-            });
-
-            /* Web Storage API , https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API */
-            var storageType = 'localStorage'; // or 'sessionStorage'
-            var storageAvailable = function () {
-                try {
-                    var storage = window[storageType],
-                        x = '__storage_test__';
-                    storage.setItem(x, x);
-                    storage.removeItem(x);
-                    return true;
-                }
-                catch (e) {
-                    return e instanceof DOMException && (
-                            // everything except Firefox
-                        e.code === 22 ||
-                        // Firefox
-                        e.code === 1014 ||
-                        // test name field too, because code might not be present
-                        // everything except Firefox
-                        e.name === 'QuotaExceededError' ||
-                        // Firefox
-                        e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
-                        // acknowledge QuotaExceededError only if there's something already stored
-                        storage.length !== 0;
-                }
-            }();
-            $log.debug("storageAvailable: " + storageAvailable);
-
-            if (storageAvailable) {
-                $scope.signedString = localStorage.getItem('signedString');
-            }
+            // GAuth.checkAuth().then(
+            //     function () {
+            //         $log.debug('[ethVerificationCtrl] GAuth.checkAuth(): success');
+            //         $rootScope.getUserData(); // async
+            //     }
+            // ).catch(function (error) {
+            //
+            //     $log.debug('[ethVerificationCtrl] GAuth.checkAuth() error:');
+            //     $log.debug(error);
+            //     // see: https://github.com/maximepvrt/angular-google-gapi/tree/master#signup-with-google
+            //     GAuth.login().then(function (user) {
+            //             // if pop-up in browser does not work we use a button with $rootScope.login();
+            //             // $log.debug('[ethVerificationCtrl]' + user.name + ' is logged in:');
+            //             $log.debug(user);
+            //             $rootScope.checkAuth(); // this includes $rootScope.getUserData() // if we use login button this will be triggered by $rootScope.login()
+            //             // your application can access their Google account
+            //         }, function () {
+            //             $scope.setAlertDanger('login failed');
+            //             $log.debug('[ethereumVerificationCtrl} login failed');
+            //         }
+            //     );
+            // });
 
             $log.info("[ethVerification] $stateParams.fingerprint : " + $stateParams.fingerprint);
             //
@@ -313,8 +282,6 @@
 
                                             if (!$scope.pgpPublicKey.verified) {
                                                 $scope.setAlertDanger('This OpenPGP key is not verified. '
-                                                    + 'Please, first verify your OpenPGP key, '
-                                                    + 'then return to Ethereum address verification for this key'
                                                 );
                                                 return;
                                             }
@@ -355,21 +322,11 @@
                                             );//
                                             $rootScope.currentNetwork.web3Version = $rootScope.web3.version.api;
 
-                                            if ($rootScope.web3.eth.defaultAccount) {
-                                                $scope.ethAccount = $rootScope.web3.eth.defaultAccount;
-                                            } else if ($rootScope.web3.eth.accounts[0]) {
-                                                $scope.ethAccount = $rootScope.web3.eth.accounts[0];
-                                                $rootScope.web3.eth.defaultAccount = $rootScope.web3.eth.accounts[0];
-                                            } else {
-                                                $scope.setAlertDanger(
-                                                    "Ethereum Account not recognized."
-                                                    + "Please connect your account in MetaMask or Mist and reload this page. "
-                                                );
-                                            }
 
                                             // add functions to buttons:
 
                                             /* ------------ requestDataFromSmartContract --- */
+
                                             $scope.requestDataFromSmartContract = function () {
                                                 $log.debug('$scope.requestDataFromSmartContract() started');
                                                 $scope.requestDataFromSmartContractError = {};
@@ -387,32 +344,31 @@
                                                             $log.info('[$scope.requestDataFromSmartContract] $scope.smartContractData.ethAddressConnectedToFingerprint: ');
                                                             $log.info($scope.smartContractData.ethAddressConnectedToFingerprint);
                                                             // --------------------- with ethAddressConnectedToFingerprint:
-                                                            // (0)
                                                             $scope.contract.verification.call(ethAddressConnectedToFingerprint)
                                                                 .then(
                                                                     function (verification) {
                                                                         $log.debug('[$scope.requestDataFromSmartContract] verification:');
                                                                         $log.debug(verification);
                                                                         $scope.smartContractData.fingerprint = verification[0]; // < verified
-                                                                        $scope.smartContractData.keyCertificateValidUntilUnixTime = verification[1];
+                                                                        $scope.smartContractData.keyCertificateValidUntilUnixTime = verification[1].toNumber();
                                                                         $scope.smartContractData.keyCertificateValidUntilDate =
                                                                             $rootScope.dateFromUnixTime(
                                                                                 $scope.smartContractData.keyCertificateValidUntilUnixTime
                                                                             );
                                                                         $scope.smartContractData.firstName = verification[2];
                                                                         $scope.smartContractData.lastName = verification[3];
-                                                                        $scope.smartContractData.birthDateUnixTime = verification[4];
+                                                                        $scope.smartContractData.birthDateUnixTime = verification[4].toNumber();
                                                                         $scope.smartContractData.birthDate =
                                                                             $rootScope.dateFromUnixTime(
                                                                                 $scope.smartContractData.birthDateUnixTime
                                                                             );
                                                                         $scope.smartContractData.nationality = verification[5];
-                                                                        $scope.smartContractData.verificationAddedOnUnixTime = verification[6];
+                                                                        $scope.smartContractData.verificationAddedOnUnixTime = verification[6].toNumber();
                                                                         $scope.smartContractData.verificationAddedOnDate =
                                                                             $rootScope.dateFromUnixTime(
                                                                                 $scope.smartContractData.verificationAddedOnUnixTime
                                                                             );
-                                                                        $scope.smartContractData.revokedOnUnixTime = verification[7];
+                                                                        $scope.smartContractData.revokedOnUnixTime = verification[7].toNumber();
                                                                         $scope.smartContractData.revokedOnDate =
                                                                             $rootScope.dateFromUnixTime(
                                                                                 $scope.smartContractData.revokedOnUnixTime
@@ -420,15 +376,27 @@
                                                                         $scope.smartContractData.signedString = verification[8];
 
                                                                         $scope.$apply();
+                                                                        return $scope.contract.signedStringUploadedOnUnixTime.call($rootScope.web3.eth.defaultAccount);
                                                                     }
-                                                                ).catch(function (error) {
-                                                                    $log.debug('$scope.contract.verification.call() error:');
-                                                                    $log.error(error);
-                                                                    $scope.requestDataFromSmartContractError.error = true;
-                                                                    $scope.requestDataFromSmartContractError.verification = error;
-                                                                    $scope.$apply();
-                                                                }
-                                                            );
+                                                                )
+                                                                //  duplicate:
+                                                                // .then(function (signedStringUploadedOnUnixTime) {
+                                                                //         $scope.smartContractData.signedStringUploadedOnUnixTime = signedStringUploadedOnUnixTime.toNumber();
+                                                                //         $scope.smartContractData.signedStringUploadedOnDate =
+                                                                //             $rootScope.dateFromUnixTime(
+                                                                //                 $scope.smartContractData.signedStringUploadedOnUnixTime
+                                                                //             );
+                                                                //     }
+                                                                // )
+                                                                .catch(function (error) {
+                                                                        $log.debug('$scope.contract.verification.call() error:');
+                                                                        $log.error(error);
+                                                                        $scope.requestDataFromSmartContractError.error = true;
+                                                                        $scope.requestDataFromSmartContractError.verification = error;
+                                                                        $scope.$apply();
+                                                                    }
+                                                                );
+
                                                             // (1)
                                                             $scope.contract.fingerprint.call(ethAddressConnectedToFingerprint)
                                                                 .then(
@@ -463,23 +431,26 @@
                                                                     $scope.$apply();
                                                                 }
                                                             );
+
                                                             // (3)
                                                             // for verification request:
-                                                            $scope.smartContractData.stringToSign =
-                                                                "I hereby confirm that the address "
-                                                                + $scope.ethAccount.toLowerCase()
-                                                                + " is my Ethereum address";
+                                                            // $scope.smartContractData.stringToSign =
+                                                            //     "I hereby confirm that the address "
+                                                            //     + $scope.ethAccount.toLowerCase()
+                                                            //     + " is my Ethereum address";
 
                                                             // (4)
                                                             $scope.contract.signedStringUploadedOnUnixTime.call(ethAddressConnectedToFingerprint)
                                                                 .then(
                                                                     function (signedStringUploadedOnUnixTime) {
-                                                                        $log.debug('[$scope.requestDataFromSmartContract] signedStringUploadedOnUnixTime:');
-                                                                        $log.debug(signedStringUploadedOnUnixTime);
                                                                         $scope.smartContractData.signedStringUploadedOnUnixTime
-                                                                            = signedStringUploadedOnUnixTime;
+                                                                            = signedStringUploadedOnUnixTime.toNumber();
+                                                                        $log.debug(' $scope.smartContractData.signedStringUploadedOnUnixTime');
+                                                                        $log.debug($scope.smartContractData.signedStringUploadedOnUnixTime);
                                                                         $scope.smartContractData.signedStringUploadedOnDate
-                                                                            = $rootScope.dateFromUnixTime(signedStringUploadedOnUnixTime);
+                                                                            = $rootScope.dateFromUnixTime(
+                                                                            $scope.smartContractData.signedStringUploadedOnUnixTime
+                                                                        );
                                                                         $scope.$apply();
                                                                     }
                                                                 ).catch(function (error) {
@@ -495,12 +466,12 @@
                                                                 .then(
                                                                     function (priceForVerificationInWei) {
                                                                         $log.debug('[$scope.requestDataFromSmartContract] priceForVerificationInWei:');
-                                                                        $log.debug(priceForVerificationInWei);
-                                                                        $scope.smartContractData.priceForVerificationInWei = priceForVerificationInWei;
+                                                                        $log.debug(priceForVerificationInWei.toNumber());
+                                                                        $scope.smartContractData.priceForVerificationInWei = priceForVerificationInWei.toNumber();
                                                                         // https://github.com/ethereum/wiki/wiki/JavaScript-API#web3fromwei
                                                                         $scope.smartContractData.priceForVerificationInEth =
                                                                             $rootScope.web3.fromWei(
-                                                                                priceForVerificationInWei,
+                                                                                priceForVerificationInWei.toNumber(),
                                                                                 "ether"
                                                                             );
                                                                         $log.debug("$scope.smartContractData.priceForVerificationInEth:");
@@ -529,125 +500,6 @@
                                             // (!!!) run when controller starts >>>
                                             $scope.requestDataFromSmartContract();
 
-                                            /* ----------- Upload Signed String ---------- */
-                                            $scope.uploadSignedString = function () {
-                                                $log.debug('$scope.uploadSignedString() started;');
-
-                                                if ($stateParams.fingerprint !== $scope.pgpPublicKey.fingerprint) {
-                                                    $scope.uploadSignedStringError = "this is not your key";
-                                                    return;
-                                                }
-
-                                                $log.debug('signed string to upload:');
-                                                $log.debug($scope.signedString);
-                                                $scope.uploadSignedStringError = null;
-                                                $scope.uploadSignedStringWorking = true;
-                                                $log.debug('$scope.uploadSignedString starts');
-                                                $log.debug('signed string: ');
-                                                $log.debug($scope.signedString);
-                                                if ($rootScope.stringIsNullUndefinedOrEmpty($scope.signedString)) {
-                                                    $scope.uploadSignedStringError = 'Signed string not provided';
-                                                    $scope.uploadSignedStringWorking = false;
-                                                    return;
-                                                }
-                                                // check if provided text is valid OpenPGP signed message:
-                                                try {
-                                                    openpgp.cleartext.readArmored($scope.signedString);
-                                                } catch (error) {
-                                                    console.log(error.message);
-                                                    $scope.uploadSignedStringError =
-                                                        "This is not valid OpenPGP signed text";
-                                                    $scope.uploadSignedStringWorking = false;
-                                                    return;
-                                                }
-                                                $scope.uploadSignedStringTx = null;
-
-                                                if (storageAvailable) {
-                                                    localStorage.setItem('signedString', $scope.signedString);
-                                                }
-
-                                                $scope.contract.priceForVerificationInWei.call()
-                                                    .then(
-                                                        function (priceForVerificationInWei) {
-                                                            $log.debug('[ethVerificationCtrl] priceForVerificationInWei:');
-                                                            $log.debug(priceForVerificationInWei);
-                                                            $scope.priceForVerificationInWei = priceForVerificationInWei;
-                                                            var txParameters = {};
-                                                            if ($scope.priceForVerificationInWei === null) {
-                                                                $scope.uploadSignedStringError =
-                                                                    'Can not get price for verification from smart contract';
-                                                                $scope.uploadSignedStringWorking = false;
-                                                                $scope.$apply();
-                                                                return;
-                                                            }
-                                                            txParameters.value = $scope.priceForVerificationInWei;
-                                                            txParameters.from = $scope.ethAccount;
-                                                            txParameters.gas = 110000; // 1010203
-                                                            $log.debug('$scope.uploadSignedString txParameters: ');
-                                                            $log.debug(txParameters);
-                                                            $scope.contract.uploadSignedString(
-                                                                $stateParams.fingerprint,
-                                                                // as a key we use fingerprint as bytes32, like 0x57A5FEE5A34D563B4B85ADF3CE369FD9E77173E5
-                                                                "0x" + $stateParams.fingerprint,
-                                                                $scope.signedString,
-                                                                txParameters
-                                                            ).then(
-                                                                function (tx) {
-                                                                    $log.debug('[ethVerificationCtrl] uploadSignedString result:');
-                                                                    $log.debug(tx);
-                                                                    $scope.uploadSignedStringTx = tx;
-                                                                    $scope.requestDataFromSmartContract();// < update data (async)
-                                                                    $scope.uploadSignedStringWorking = false;
-                                                                    $scope.$apply();
-                                                                }
-                                                            ).catch(function (error) {
-                                                                    $log.debug('$scope.contract.uploadSignedString error:');
-                                                                    $log.error(error);
-                                                                    $scope.uploadSignedStringError = error.toString();
-                                                                    $scope.uploadSignedStringWorking = false;
-                                                                    $scope.$apply();
-                                                                }
-                                                            );
-                                                        }
-                                                    ).catch(function (error) {
-                                                        $scope.uploadSignedStringError = error.toString();
-                                                        $log.debug('$scope.contract.priceForVerificationInWei.call() error:');
-                                                        $log.error(error);
-                                                        $scope.uploadSignedStringWorking = false;
-                                                        $scope.$apply();
-                                                    }
-                                                );
-                                            };
-
-                                            $scope.verify = function () {
-                                                $rootScope.progressbar.start(); // <<<<<<<
-                                                $scope.verifyWorking = true;
-                                                GApi.executeAuth(
-                                                    'ethNodeAPI',
-                                                    'verifyEthAddress', //
-                                                    {"ethereumAcc": $scope.ethAccount}
-                                                ).then(
-                                                    function (resp) {
-                                                        $log.info("$scope.verify() resp: ");
-                                                        $log.info(resp);
-                                                        $scope.verificationResult = resp;
-                                                        $scope.requestDataFromSmartContract();
-                                                        $scope.verifyWorking = false;
-                                                        // $scope.$apply(); // not needed here
-                                                        $timeout($rootScope.progressbar.complete(), 1000);
-                                                    },
-                                                    function (error) {
-                                                        $log.error("$scope.verify() error: ");
-                                                        $log.error(error);
-                                                        $scope.verificationResult = error.message;
-                                                        $scope.verifyWorking = false;
-                                                        // $scope.$apply(); // not needed here
-                                                        $timeout($rootScope.progressbar.complete(), 1000);
-                                                    }
-                                                );
-                                            };
-
-                                            // ---
                                         }, function (getPGPPublicKeyByFingerprintError) {
                                             $scope.getPGPPublicKeyByFingerprintError = getPGPPublicKeyByFingerprintError;
                                             $log.debug("$scope.getPGPPublicKeyByFingerprintError : ");
@@ -659,12 +511,11 @@
 
                             } // end of function (data)
                         ); // end of $.getJSON(
-
                     }
                 });
             } else {
                 $rootScope.web3isConnected = false;
-                $scope.alertDanger = "Please use Google Chrome with MetaMask plugin or Mist Browser";
+                $scope.alertDanger = "This service requires browser connection to Ethereum blockchain. Please use Google Chrome with MetaMask plugin or Mist Browser";
                 $log.error('[ethereumVerificationCtrl] web3 is not connected to Ethereum node');
                 return;
             }
