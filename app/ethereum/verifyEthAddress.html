@@ -37,7 +37,18 @@
                                 </div>
                             </div>
 
-                            <div class="ui segment">
+                            <div class="ui segment" ng-show="!currentNetwork.connected">
+                                <div id="alertDanger" class="ui negative message">
+                                    <i class="close icon" ng-click="alertDanger=null"></i>
+                                    <div class="header">Error:</div>
+                                    <p>
+                                        This service requires browser with Ethereum blockchain connection.<br>
+                                        Please use browser with MetaMask plugin, Mist browser, or or similar software.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="ui segment" ng-show="currentNetwork.connected">
 
                                 <!-- TODO: update network ID in production -->
                                 <div id="mainSection" ng-show="currentUser&&web3.version.network=='1'">

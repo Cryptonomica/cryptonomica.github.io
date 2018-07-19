@@ -183,57 +183,6 @@
                 }
             }
 
-            // get network info:
-            $rootScope.web3.version.getNode(function (error, result) {
-                    if (error) {
-                        $log.debug(error);
-                    } else {
-                        $rootScope.currentNetwork.node = result;
-                        $rootScope.$apply();
-                        $log.debug('[ethVerificationCtrl] web3.version.node: ' + $rootScope.currentNetwork.node);
-                        // "Geth/v1.7.2-stable-1db4ecdc/linux-amd64/go1.9"
-                    }
-                }
-            );
-
-            $rootScope.web3.version.getEthereum(function (error, result) {
-                    if (error) {
-                        $log.debug(error);
-                    } else {
-                        $rootScope.currentNetwork.ethereumProtocolVersion = result;
-                        $rootScope.$apply();
-                        $log.debug('[ethVerificationCtrl] web3.version.ethereum: ' + $rootScope.currentNetwork.ethereumProtocolVersion);
-                        // the Ethereum protocol version (like: web3.version.ethereum: 0x3f )
-                    }
-                }
-            );//
-            // https://github.com/ethereum/wiki/wiki/JavaScript-API#web3ethblocknumber
-            $rootScope.web3.eth.getBlockNumber(function (error, result) {
-                    if (error) {
-                        $log.debug(error);
-                    } else {
-                        $rootScope.currentNetwork.lastKnownBlock = result;
-                        $rootScope.$apply();
-                        $log.debug('[ethVerificationCtrl] $rootScope.currentNetwork.lastKnownBlock: ' + $rootScope.currentNetwork.lastKnownBlock);
-                    }
-                }
-            );//
-            $rootScope.currentNetwork.web3Version = $rootScope.web3.version.api;
-
-            if ($rootScope.web3.eth.defaultAccount) {
-                $scope.ethAccount = $rootScope.web3.eth.defaultAccount;
-            } else if ($rootScope.web3.eth.accounts[0]) {
-                $scope.ethAccount = $rootScope.web3.eth.accounts[0];
-                $rootScope.web3.eth.defaultAccount = $rootScope.web3.eth.accounts[0];
-            } else {
-
-                $scope.setAlertDanger(
-                    "Ethereum Account not recognized."
-                    + "Please connect your account in MetaMask or Mist and reload this page. "
-                );
-                return;
-            }
-
             /* Web Storage API , https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API */
             var storageType = 'localStorage'; // or 'sessionStorage'
             var storageAvailable = function () {
@@ -330,6 +279,57 @@
                         $log.debug('[ethVerificationCtrl] $rootScope.web3.isConnected() : true ');
                         $rootScope.currentNetwork.connected = true;
                         // $rootScope.$apply();
+
+                        // get network info:
+                        $rootScope.web3.version.getNode(function (error, result) {
+                                if (error) {
+                                    $log.debug(error);
+                                } else {
+                                    $rootScope.currentNetwork.node = result;
+                                    $rootScope.$apply();
+                                    $log.debug('[ethVerificationCtrl] web3.version.node: ' + $rootScope.currentNetwork.node);
+                                    // "Geth/v1.7.2-stable-1db4ecdc/linux-amd64/go1.9"
+                                }
+                            }
+                        );
+
+                        $rootScope.web3.version.getEthereum(function (error, result) {
+                                if (error) {
+                                    $log.debug(error);
+                                } else {
+                                    $rootScope.currentNetwork.ethereumProtocolVersion = result;
+                                    $rootScope.$apply();
+                                    $log.debug('[ethVerificationCtrl] web3.version.ethereum: ' + $rootScope.currentNetwork.ethereumProtocolVersion);
+                                    // the Ethereum protocol version (like: web3.version.ethereum: 0x3f )
+                                }
+                            }
+                        );//
+                        // https://github.com/ethereum/wiki/wiki/JavaScript-API#web3ethblocknumber
+                        $rootScope.web3.eth.getBlockNumber(function (error, result) {
+                                if (error) {
+                                    $log.debug(error);
+                                } else {
+                                    $rootScope.currentNetwork.lastKnownBlock = result;
+                                    $rootScope.$apply();
+                                    $log.debug('[ethVerificationCtrl] $rootScope.currentNetwork.lastKnownBlock: ' + $rootScope.currentNetwork.lastKnownBlock);
+                                }
+                            }
+                        );//
+                        $rootScope.currentNetwork.web3Version = $rootScope.web3.version.api;
+
+                        if ($rootScope.web3.eth.defaultAccount) {
+                            $scope.ethAccount = $rootScope.web3.eth.defaultAccount;
+                        } else if ($rootScope.web3.eth.accounts[0]) {
+                            $scope.ethAccount = $rootScope.web3.eth.accounts[0];
+                            $rootScope.web3.eth.defaultAccount = $rootScope.web3.eth.accounts[0];
+                        } else {
+
+                            $scope.setAlertDanger(
+                                "Ethereum Account not recognized."
+                                + "Please connect your account in MetaMask or Mist and reload this page. "
+                            );
+                            return;
+                        }
 
                         $rootScope.web3.version.getNetwork(function (error, result) {
 
@@ -653,7 +653,7 @@
                     } else {
                         $rootScope.web3isConnected = false;
                         $log.error('[ethereumVerificationCtrl] web3 is not connected to Ethereum node');
-                        return Promise.reject("No connection to Ethereum network. Please use a browser with MetaMask plugin or Mist Browser");
+                        // return Promise.reject("No connection to Ethereum network. Please use a browser with MetaMask plugin or Mist Browser");
                     }
                 })
                 .catch(function (error) {
