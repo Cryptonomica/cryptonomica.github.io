@@ -220,6 +220,9 @@
             $scope.userProfileGeneralView = null;
             $scope.userKeys = [];
             $scope.fingerprint = null; // used in <select>
+            if (!$rootScope.stringIsNullUndefinedOrEmpty($stateParams.fingerprint)) {
+                $scope.fingerprint = $stateParams.fingerprint;
+            }
             //
             $rootScope.progressbar.start(); // <<<<<<<<<<<
             GAuth.checkAuth()
@@ -637,7 +640,7 @@
                                                         function (error) {
                                                             $log.error("$scope.verify() error: ");
                                                             $log.error(error);
-                                                            $scope.verificationResult = error.message;
+                                                            $scope.verificationError = error.message;
                                                             $scope.verifyWorking = false;
                                                             // $scope.$apply(); // not needed here
                                                             $timeout($rootScope.progressbar.complete(), 1000);
