@@ -38,24 +38,31 @@
 
                 <i class="icon ion-md-mail" style="font-size: 1.5em"></i>
 
-                <div class="ui red label mini circular" ng-show="newMessages"></div>
+                <!--<div class="ui red label mini circular" ng-show="newMessagesRed"></div>-->
+                <div class="ui green label mini circular" ng-show="promoCodeMessage" style="margin-left: -0.5em;"></div>
 
                 <div class="menu">
-
                     <div class="header">
                         New messages
                     </div>
 
-                    <div class="item">
+                    <!-- promo code -->
+                    <div class="item" ng-show="promoCodeMessage" title="click to copy to clipboard"
+                         ng-click="copyToClipboard('#promoCodeMessage')">
+                        your promo code for key verification: &nbsp;
+                        <span id="promoCodeMessage" style="font-weight: bolder">{{promoCodeMessage}}</span>
+                    </div>
+
+                    <div class="item" ng-hide="promoCodeMessage">
                         No new messages
                     </div>
+
                     <div class="header">
                         Old messages
                     </div>
                     <div class="item">
                         No messages
                     </div>
-
                 </div>
             </div>
 

@@ -181,3 +181,10 @@ a .socialLogo:hover {
     /*padding: 0.5em;*/
 }
 
+/* ----- FORMS --------*/
+.inputError {
+    background: #FFF6F6 !important;
+    border-color: #E0B4B4 !important;
+    color: #9F3A38 !important;
+}
+

@@ -416,6 +416,20 @@ app.run([
                     return publicKey;
                 };
 
+            // =============== Promo code
+            // $rootScope.messagesToUser = {};
+            // $rootScope.messagesToUser.color = null;
+            // $rootScope.messagesToUser.messagesArray = []; // not implemented yet
+            // $rootScope.promoCode = null;
+            // $rootScope.messagesToUser.oldMessagesArray = [];
+            if (!$rootScope.stringIsNullUndefinedOrEmpty($cookies.get('promocode'))) {
+                // https://docs.angularjs.org/api/ngCookies/service/$cookies
+                $rootScope.promoCodeMessage = $cookies.get('promocode');
+            }
+            // if ($scope.promoCode) {
+            //     $scope.getPriceForKeyVerification();
+            // }
+
             // =============== Function calls:
             $rootScope.progressbar = ngProgressFactory.createInstance();
             $rootScope.progressbar.setHeight('6px'); // any valid CSS value Eg '10px', '1em' or '1%'
