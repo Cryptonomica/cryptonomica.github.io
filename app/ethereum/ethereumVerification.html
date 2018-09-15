@@ -69,7 +69,7 @@
                                             ui-sref="viewprofile({userId:pgpPublicKey.cryptonomicaUserId})">{{pgpPublicKey.userID}}</a>)
                                         &nbsp;
 
-                                        <span ng-show=" pgpPublicKey.cryptonomicaUserId==currentUser.userId"
+                                        <span ng-show="pgpPublicKey.cryptonomicaUserId&&pgpPublicKey.cryptonomicaUserId==currentUser.userId"
                                               style="color: green">(this is your key)</span>
                                         <!--<span ng-show="pgpPublicKey.cryptonomicaUserId!=currentUser.userId">(it's not your key)</span>-->
                                         <br><br>

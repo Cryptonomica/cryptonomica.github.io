@@ -17,7 +17,8 @@
 }
 
 #footer {
-    background-color: rgba(222, 222, 222, 1.0);
+    /*background-color: rgba(222, 222, 222, 1.0);*/
+    background-color: rgba(219, 219, 219, 1.0);
 }
 
 .ui .form {
@@ -133,7 +134,8 @@ No js needed */
 
 a .socialLogo {
     font-size: 1.4em;
-    color: #9c9c9c !important;
+    color: #777777 !important;
+    /*color: #9c9c9c !important;*/
     /*color: black !important;*/
 }
 
