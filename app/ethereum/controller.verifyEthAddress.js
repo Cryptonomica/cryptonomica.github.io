@@ -603,6 +603,10 @@
                                                                         $log.debug('$scope.contract.uploadSignedString error:');
                                                                         $log.error(error);
                                                                         $scope.uploadSignedStringError = error.toString();
+                                                                        if ($scope.uploadSignedStringError.indexOf("wasn't processed in 240 seconds") >= 0) {
+                                                                            $scope.uploadSignedStringError = $scope.uploadSignedStringError +
+                                                                                " (but it can be mined, please, update/refresh data from smart contract)"
+                                                                        }
                                                                         $scope.uploadSignedStringWorking = false;
                                                                         $scope.$apply();
                                                                         $timeout($rootScope.progressbar.complete(), 1000); // <<<<<<
