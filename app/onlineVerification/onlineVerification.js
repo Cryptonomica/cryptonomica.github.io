@@ -338,7 +338,6 @@
                                 || !$scope.onlineVerification.paymentMade) {
 
                                 $scope.stripePaymentForOnlineKeyVerification = true;
-                                $scope.getPriceForKeyVerification();
 
                             } else if (nullUndefinedEmptySting($scope.onlineVerification.paymentVerified)
                                 || !$scope.onlineVerification.paymentVerified) {
@@ -468,10 +467,7 @@
                     }
                 )
             };
-
-            // TODO: (2018.10.02) commented, should be called from:
-            // else if (nullUndefinedEmptySting($scope.onlineVerification.paymentMade) // < payment not made
-            // $scope.getPriceForKeyVerification();
+            $scope.getPriceForKeyVerification(); // << run
 
             $scope.getVideoUploadKey = function () {
                 GApi.executeAuth('onlineVerificationAPI', 'getVideoUploadKey')
