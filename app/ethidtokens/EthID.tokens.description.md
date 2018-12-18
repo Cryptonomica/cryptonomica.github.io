@@ -25,7 +25,13 @@ EthID token is a cryptocurrency backed in ether in smart contract on the Ethereu
 
 Tokens conform to the [ERC-20](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md) standard. 
 
-Smart contract code: https://github.com/Cryptonomica/cryptonomica.github.io/blob/master/app/ethidtokens/EthID.sol  
+Smart contract code: https://github.com/Cryptonomica/cryptonomica.github.io/blob/master/app/ethidtokens/EthID.sol 
+
+Smart contract address: 
+https://etherscan.io/address/0xe5374b3840f0782608f86e270ae389b8ee2024c4 
+
+Verified smart contract code: 
+https://etherscan.io/address/0xe5374b3840f0782608f86e270ae389b8ee2024c4#code 
 
 ## Token distribution. 
 There will be no crowdfunding and no public offering.
@@ -49,7 +55,7 @@ In such way, we solve the fundamental problem faced by investors buying tokens o
 * Max Baryshnikov, lawyer, CFO of Cryptonomica, https://github.com/MaxBaryshnikov  
 
 ### Advisers:
-* 
+* Vadym Kurylovych, founder of [stex.com](https://www.stex.com), a licenced Estonian cryptocurrency exchange
 
 ## Differences from other projects and approaches.
 ### Is it a 'self-sovereign identity'? 
