@@ -1,10 +1,11 @@
-pragma solidity >=0.4.25 <0.6.0;
+pragma solidity >=0.4.24 <0.6.0;
 
 /**
  * Cryptonomica EthID Tokens smart contract
  * developed by Cryptonomica Ltd., 2018
  * https://cryptonomica.net
  * github: https://github.com/Cryptonomica/
+ * deployed using compiler version: 0.4.24+commit.e67f0147.Emscripten.clang
  */
 
 
