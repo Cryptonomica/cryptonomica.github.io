@@ -21,6 +21,10 @@ This smart contract has simple and developer friendly interface, and can be used
 
 EthID token is a cryptocurrency backed in ether in smart contract on the Ethereum blockchain,  representing a share in the revenue from Ethereum address verification system developed by Cryptonomica.
 
+Tokens conform to the [ERC-20](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md) standard. 
+
+Smart contract code: https://github.com/Cryptonomica/cryptonomica.github.io/blob/master/app/ethidtokens/EthID.sol 
+
 ## Token distribution. 
 
 There will be no crowdfunding and no public offering.
