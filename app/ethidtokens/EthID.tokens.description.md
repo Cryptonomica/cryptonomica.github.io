@@ -1,12 +1,12 @@
 Ethereum Identity (EthID) tokens by Cryptonomica 
 ================================================
 
-Last revision: 2018-12-18 
+Last revision: 2018-12-26 
 Published on: https://github.com/Cryptonomica/cryptonomica.github.io/blob/master/app/ethidtokens/EthID.tokens.description.md 
 Google Doc (draft): https://docs.google.com/document/d/15dr27enz30M0qjsWms5BMMiOZ-S84aQ_Zwm8NfqEGZM/ 
 
 ## Identity verification by Cryptonomica.
-Cryptonomica made and is developing online and offline digital identity system. A detailed description of the Cryptonomica’s activities is set out in its ['White Paper'](http://bit.ly/Cryptonomica-White-Paper)
+[Cryptonomica](https://cryptonomica.net) made and is developing online and offline digital identity system. A detailed description of the Cryptonomica’s activities is set out in its ['White Paper'](http://bit.ly/Cryptonomica-White-Paper)
 
 Basically, user identity is connected to cryptographic key in [OpenPGP](https://en.wikipedia.org/wiki/Pretty_Good_Privacy) standard. 
 And it can also be connected to blockchain address. 
@@ -19,6 +19,9 @@ Owner of the eth address is verified using his/her previously verified OpenPGP k
 User data are stored in smart contract: https://etherscan.io/address/0x846942953c3b2A898F10DF1e32763A823bf6b27f#readContract  
 
 This smart contract has simple and developer friendly interface, and can be used (for free) as an extension for other smart contracts. 
+
+### Use cases.
+Cryptonomica Ethereum address verification implemented on [SONM](https://sonm.com), see: [How to pass KYC with Cryptonomica](https://docs.sonm.com/how-to/how-to-pass-kyc-by-cryptonomica) 
 
 ## Token definition.
 EthID token is a cryptocurrency backed in ether in smart contract on the Ethereum blockchain,  representing a share in the revenue from Ethereum address verification system developed by Cryptonomica.
@@ -46,6 +49,12 @@ Cryptonomica accumulates all revenue from Ethereum identity verification smart c
 All payments made to that smart contract will be transferred to smart contract with tokens. 
 
 Any token holder can at any time burn his/her tokens, and immediately receive a share of the current sumo of EHT in smart contract, the same as the share of the burned tokens in the current total supply of tokens. Thus, we have a smart contract in which more and more funds accumulate, and number of tokens become less and less. 
+
+Of course, token holder can instead of burning a token, sell it, and probably get better revenue. 
+EthID token is already listed on [stex.com](https://stex.com) , a licensed Estonian cryptocurrency exchange that works both with fiat and cryptocurrencies. EthID/ETH :  https://app.stex.com/en/trade/pair/ETH/EthID/30 
+EthID token derivative ([Asset CRYPTONOMICA](https://wallet.bitshares.org/#/asset/CRYPTONOMICA)) is listed and traded on [bitshares](https://wallet.bitshares.org/#/asset/CRYPTONOMICA) via [deex.exchange](https://deex.exchange/asset/CRYPTONOMICA/) 
+Thus instead of burning a token a token holder can sell it on stex.com, deex.exchange or other cryptocurrency exchanges. 
+
 
 In such way, we solve the fundamental problem faced by investors buying tokens on the Ethereum: the price growth of these tokens often is is less than the growth of the ETH. In our case, the tokens acquire a minimum value equal to the amount of ether on which they can be immediately exchanged, and this amount cannot become smaller over time. 
 
@@ -84,4 +93,15 @@ See also [Awesome Decentralized Identity](https://github.com/infominer33/awesome
 
 For the market history see [Evolution of Online Identity](https://wiki.p2pfoundation.net/Evolution_of_Online_Identity), 
 [Online identity](http://en.wikipedia.org/wiki/Online_identity).
+
+## Where to get more info and support? 
+Email: support@cryptonomica.net 
+
+Telegram: https://t.me/cryptonomicanet 
+
+Facebook: https://www.facebook.com/groups/cryptonomica/ 
+
+Reddit: https://www.reddit.com/r/cryptonomica/ 
+
+Wiki on github: https://github.com/Cryptonomica/cryptonomica/wiki 
 
