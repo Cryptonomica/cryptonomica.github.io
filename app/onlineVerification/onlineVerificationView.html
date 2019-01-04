@@ -57,11 +57,13 @@
                                 <table class="ui celled table">
                                     <tbody>
                                     <tr>
-                                        <td>Key fingerprint:</td>
+                                        <td>Key</td>
                                         <td class="capitalize">
                                             <a ui-sref="key({fingerprint: onlineVerification.fingerprint})">
                                                 {{onlineVerification.fingerprint}}
                                             </a>
+                                            <br>
+                                            {{onlineVerification.userIdFromKey}}
                                         </td>
                                     </tr>
                                     <tr>
